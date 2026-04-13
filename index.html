@@ -62,9 +62,8 @@ body{background:#000;color:#ddd;font-family:'Source Serif 4',Georgia,serif;min-h
    HEADER
 ══════════════════════════════ */
 header{
-  position:sticky;top:0;z-index:100;
+  position:relative;
   background:rgba(0,0,0,0.96);
-  backdrop-filter:blur(14px);
   border-bottom:1px solid #111;
 }
 .header-inner{
@@ -281,17 +280,29 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
   max-width:440px;margin:0 auto 36px;
   line-height:1.7;font-weight:300;
 }
-.hero-cycling{
+.hero-cycling-wrap{
   display:inline-block;
-  overflow:visible;
+  width:clamp(200px,60vw,440px);
+  overflow:hidden;
+  background:#fff;
+  border-radius:3px;
+  vertical-align:middle;
+  padding:4px 18px 8px;
+}
+.hero-cycling{
+  display:block;
+  width:100%;
+  overflow:hidden;
   white-space:nowrap;
+  text-overflow:ellipsis;
   border-right:3px solid #000;
   animation:cursorBlink 0.75s step-end infinite;
   font-style:italic;
   color:#000;
-  background:#fff;
-  padding:2px 14px 6px;
-  border-radius:2px;
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:clamp(32px,6vw,72px);
+  line-height:1.1;
 }
 @keyframes cursorBlink{0%,100%{border-color:#000}50%{border-color:transparent}}
 
@@ -745,6 +756,8 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
   padding:11px 0;
   position:relative;
   user-select:none;
+  flex-shrink:0;
+  contain:layout style;
 }
 .ticker-strip.light-ticker{
   background:rgba(101,72,48,0.10);
@@ -842,7 +855,7 @@ body.light .ticker-item::after{
       <div class="hero-badge">✦ Knowledge Platform</div>
       <div class="hero-understand">
         Understand the<br>
-        <span><span class="hero-cycling" id="cycling-word">Business</span></span>
+        <span><div class="hero-cycling-wrap"><span class="hero-cycling" id="cycling-word">Business</span></div></span>
       </div>
       <p class="hero-sub">Real insights on Business, Psychology, Finance & more — decoded simply for you.</p>
       <div class="search-wrap">
@@ -872,11 +885,6 @@ body.light .ticker-item::after{
       <button class="cat-pill" onclick="filterCat('finance',this)">Finance</button>
       <button class="cat-pill" onclick="filterCat('life',this)">Life</button>
       <button class="cat-pill" onclick="filterCat('communication',this)">Communication</button>
-    </div>
-
-    <!-- TICKER 2: Categories → Articles -->
-    <div class="ticker-strip alt">
-      <div class="ticker-track" id="ticker2"></div>
     </div>
 
     <div class="sort-wrap">
@@ -1167,14 +1175,6 @@ const TICKER_SETS = {
     'Stay in the grind','Decode your life','Knowledge is power','No shortcuts','Stay curious',
     'Build every day','Read more think more','One more article','The grind is the goal','Stay hungry',
   ],
-  ticker2: [
-    'Filter your focus','Pick your topic','Every category counts','Deep dive','Stay consistent',
-    'Business · Psychology · Finance','Skills pay bills','Learn apply repeat','Your niche awaits','Go deeper',
-  ],
-  ticker3: [
-    'Keep reading','Come back tomorrow','More coming soon','Share the knowledge','Grind never stops',
-    'Built for thinkers','Decode everything','Stay sharp','Daily reads daily wins','See you again',
-  ],
 };
 function buildTicker(id, words){
   const el = document.getElementById(id);
@@ -1421,11 +1421,6 @@ function renderRelated(id){
     </div>`).join('');
 }
 </script>
-
-<!-- TICKER 3: Articles → Footer -->
-<div class="ticker-strip">
-  <div class="ticker-track" id="ticker3"></div>
-</div>
 
 <!-- FOOTER -->
 <footer id="site-footer">
