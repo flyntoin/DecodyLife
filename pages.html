@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>DecodyLife — Pages</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#000;color:#ddd;font-family:'Source Serif 4',Georgia,serif;min-height:100vh;overflow-x:hidden}
+
+/* HEADER */
+header{
+  position:relative;
+  background:rgba(0,0,0,0.96);
+  border-bottom:1px solid #111;
+}
+.header-inner{
+  max-width:1100px;margin:0 auto;
+  padding:0 20px;height:54px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.dl-logo{
+  display:inline-flex;align-items:center;gap:0;
+  cursor:pointer;line-height:1;
+  background:#fff;padding:5px 12px;border-radius:2px;
+  text-decoration:none;
+}
+.dl-d{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:#000;letter-spacing:-1px;}
+.dl-rest{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:300;color:#000;letter-spacing:4px;text-transform:uppercase;align-self:flex-end;padding-bottom:2px;padding-left:2px;}
+
+/* NAV TABS */
+.page-tabs{
+  display:flex;gap:0;
+  max-width:1100px;margin:0 auto;
+  padding:0 20px;
+  border-bottom:1px solid #111;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.page-tabs::-webkit-scrollbar{display:none;}
+.tab-btn{
+  background:none;border:none;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:#444;
+  padding:16px 20px;
+  cursor:pointer;
+  white-space:nowrap;
+  border-bottom:2px solid transparent;
+  transition:color 0.2s, border-color 0.2s;
+}
+.tab-btn:hover{color:#aaa;}
+.tab-btn.active{color:#fff;border-bottom-color:#fff;}
+
+/* PAGE SECTIONS */
+.page-section{display:none;}
+.page-section.active{display:block;}
+
+.page-inner{
+  max-width:720px;margin:0 auto;
+  padding:64px 20px 100px;
+}
+
+/* HEADINGS */
+.page-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:0.2em;
+  text-transform:uppercase;color:#555;
+  margin-bottom:16px;
+}
+.page-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(30px,6vw,52px);
+  font-weight:900;color:#fff;
+  line-height:1.15;
+  margin-bottom:40px;
+  letter-spacing:-0.5px;
+}
+.page-title span{
+  font-style:italic;
+  background:#fff;color:#000;
+  padding:0 10px 4px;
+  border-radius:2px;
+}
+
+/* DIVIDER */
+.dl-divider{
+  width:48px;height:1px;background:#1e1e1e;
+  margin:36px 0;
+}
+
+/* BODY TEXT */
+.page-body p{
+  font-size:17px;line-height:1.9;color:#999;
+  margin-bottom:22px;font-weight:300;
+}
+.page-body p strong{color:#ddd;font-weight:600;}
+.page-body h3{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:#fff;
+  background:rgba(101,72,48,0.4);
+  display:inline-block;
+  padding:4px 12px;border-radius:2px;
+  margin:36px 0 14px;
+}
+.page-body ul{
+  list-style:none;
+  margin-bottom:22px;
+}
+.page-body ul li{
+  font-size:16px;line-height:1.8;color:#999;
+  padding:6px 0 6px 20px;
+  position:relative;font-weight:300;
+  border-bottom:1px solid #0e0e0e;
+}
+.page-body ul li::before{
+  content:'→';
+  position:absolute;left:0;
+  color:#333;font-size:12px;
+}
+
+/* CONTACT LINKS */
+.contact-card{
+  border:1px solid #111;
+  padding:28px 24px;
+  margin-bottom:16px;
+  display:flex;align-items:center;gap:20px;
+  transition:border-color 0.2s, background 0.2s;
+  cursor:pointer;text-decoration:none;
+}
+.contact-card:hover{border-color:#333;background:#080808;}
+.contact-icon{
+  width:44px;height:44px;
+  border:1px solid #1a1a1a;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:18px;
+}
+.contact-info .c-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;letter-spacing:0.18em;
+  text-transform:uppercase;color:#444;
+  margin-bottom:4px;
+}
+.contact-info .c-value{
+  font-size:15px;color:#ccc;
+}
+
+/* FOOTER */
+.site-footer{
+  border-top:1px solid #111;
+  padding:28px 20px;
+  text-align:center;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:0.1em;
+  color:#222;
+  background:rgba(101,72,48,0.3);
+}
+.site-footer a{color:#444;text-decoration:none;}
+.site-footer a:hover{color:#888;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:#000}
+::-webkit-scrollbar-thumb{background:#1a1a1a}
+
+@media(max-width:560px){
+  .page-inner{padding:44px 16px 80px;}
+  .tab-btn{padding:14px 14px;font-size:9px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="dl-logo" href="index.html">
+      <span class="dl-d">D</span><span class="dl-rest">ECODY LIFE</span>
+    </a>
+  </div>
+</header>
+
+<!-- TABS -->
+<div class="page-tabs">
+  <button class="tab-btn active" onclick="showPage('about',this)">About</button>
+  <button class="tab-btn" onclick="showPage('privacy',this)">Privacy Policy</button>
+  <button class="tab-btn" onclick="showPage('terms',this)">Terms of Service</button>
+  <button class="tab-btn" onclick="showPage('contact',this)">Contact</button>
+</div>
+
+<!-- ══════════════════════════════
+     ABOUT
+══════════════════════════════ -->
+<div class="page-section active" id="page-about">
+  <div class="page-inner">
+    <div class="page-label">Who we are</div>
+    <h1 class="page-title">Decoding life,<br><span>one idea at a time.</span></h1>
+
+    <div class="page-body">
+      <p><strong>DecodyLife</strong> is a self-improvement knowledge platform built for people who want to understand the world — and themselves — more clearly.</p>
+
+      <p>We started as a YouTube channel where we break down complex ideas about business, psychology, money, and life through simple stick figure animation videos. Every concept, explained visually. Every lesson, made simple.</p>
+
+      <p>This website is the official home of the DecodyLife channel — where every video gets a full written article. So whether you prefer watching or reading, the knowledge is always here for you.</p>
+
+      <div class="dl-divider"></div>
+
+      <h3>What we cover</h3>
+      <ul>
+        <li>Business & Entrepreneurship</li>
+        <li>Psychology & Human Behaviour</li>
+        <li>Dark Psychology & Influence</li>
+        <li>Money, Finance & Investing</li>
+        <li>Marketing & Persuasion</li>
+        <li>Productivity & Skills</li>
+        <li>Motivation & Mindset</li>
+        <li>Life, Communication & Success Stories</li>
+      </ul>
+
+      <div class="dl-divider"></div>
+
+      <h3>Our philosophy</h3>
+      <p>We believe self-improvement doesn't need to be complicated. No jargon. No false motivation. Just real ideas, decoded simply — so you can actually use them in your life.</p>
+
+      <p>Every article on this site is written from the same script as the video — so you get the full depth of the idea, in a format you can read, save, and come back to.</p>
+
+      <div class="dl-divider"></div>
+
+      <h3>The YouTube channel</h3>
+      <p>DecodyLife on YouTube is where it all started. Stick figure animations that explain powerful ideas in minutes. Subscribe and watch the ideas come to life visually.</p>
+      <p>
+        <a href="https://youtube.com/@decodylife" target="_blank" style="color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;border-bottom:1px solid #333;padding-bottom:2px;text-decoration:none;">
+          ↗ youtube.com/@decodylife
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     PRIVACY POLICY
+══════════════════════════════ -->
+<div class="page-section" id="page-privacy">
+  <div class="page-inner">
+    <div class="page-label">Last updated: April 2026</div>
+    <h1 class="page-title">Privacy<br><span>Policy</span></h1>
+
+    <div class="page-body">
+      <p>At <strong>DecodyLife</strong>, we respect your privacy. This Privacy Policy explains what information we collect, how we use it, and your rights regarding your data.</p>
+
+      <h3>Information we collect</h3>
+      <p>We do not require you to create an account to read articles on DecodyLife. However, we may collect the following limited information:</p>
+      <ul>
+        <li>Comments you post on articles (name and comment text)</li>
+        <li>Search queries you enter on the site (processed locally, not stored)</li>
+        <li>Basic analytics data such as page views and visit duration (via third-party tools like Google Analytics, if enabled)</li>
+      </ul>
+
+      <h3>How we use your information</h3>
+      <ul>
+        <li>To display your comments on the relevant article</li>
+        <li>To improve the site's content and user experience</li>
+        <li>To understand which topics our readers find most useful</li>
+      </ul>
+
+      <h3>Cookies</h3>
+      <p>This site may use basic cookies to remember your preferences (such as light/dark mode). We do not use cookies for advertising or tracking purposes beyond standard analytics.</p>
+
+      <h3>Third-party links</h3>
+      <p>Our site contains links to our YouTube channel and other external websites. We are not responsible for the privacy practices of those sites. We encourage you to read their privacy policies.</p>
+
+      <h3>Children's privacy</h3>
+      <p>DecodyLife is not directed at children under the age of 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>Your rights</h3>
+      <p>You have the right to request deletion of any comment or personal data you have submitted to this site. To do so, contact us at <strong>contentdecodylife@gmail.com</strong>.</p>
+
+      <h3>Changes to this policy</h3>
+      <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of the site means you accept the updated policy.</p>
+
+      <div class="dl-divider"></div>
+      <p>Questions? Reach us at <strong>contentdecodylife@gmail.com</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     TERMS OF SERVICE
+══════════════════════════════ -->
+<div class="page-section" id="page-terms">
+  <div class="page-inner">
+    <div class="page-label">Last updated: April 2026</div>
+    <h1 class="page-title">Terms of<br><span>Service</span></h1>
+
+    <div class="page-body">
+      <p>By accessing and using <strong>DecodyLife</strong> (the "Site"), you agree to be bound by these Terms of Service. Please read them carefully before using the site.</p>
+
+      <h3>Use of content</h3>
+      <p>All articles, scripts, and written content published on DecodyLife are the intellectual property of DecodyLife and its creator. You may not copy, reproduce, or republish any content from this site without prior written permission.</p>
+      <ul>
+        <li>You may share links to articles freely</li>
+        <li>You may quote short excerpts with credit to DecodyLife</li>
+        <li>You may not repost full articles on other websites or platforms</li>
+        <li>You may not use our content for commercial purposes without permission</li>
+      </ul>
+
+      <h3>User comments</h3>
+      <p>When you post a comment on DecodyLife, you agree that:</p>
+      <ul>
+        <li>Your comment is respectful and does not contain hate speech, abuse, or spam</li>
+        <li>You grant DecodyLife the right to display your comment on the site</li>
+        <li>We reserve the right to remove any comment that violates these terms</li>
+      </ul>
+
+      <h3>Disclaimer</h3>
+      <p>The content on DecodyLife is for <strong>educational and informational purposes only</strong>. Nothing on this site constitutes professional financial, legal, medical, or psychological advice. Always consult a qualified professional before making important decisions.</p>
+
+      <h3>No guarantees</h3>
+      <p>We do our best to ensure accuracy, but we make no guarantees that all content on this site is complete, correct, or up to date. Use the information at your own discretion.</p>
+
+      <h3>External links</h3>
+      <p>This site contains links to external websites, including our YouTube channel. We are not responsible for the content or practices of those sites.</p>
+
+      <h3>Changes to terms</h3>
+      <p>We reserve the right to update these Terms of Service at any time. Continued use of the site after changes are posted means you accept the new terms.</p>
+
+      <div class="dl-divider"></div>
+      <p>For any questions regarding these terms, contact us at <strong>contentdecodylife@gmail.com</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     CONTACT
+══════════════════════════════ -->
+<div class="page-section" id="page-contact">
+  <div class="page-inner">
+    <div class="page-label">Get in touch</div>
+    <h1 class="page-title">Contact<br><span>DecodyLife</span></h1>
+
+    <div class="page-body">
+      <p>Have a question, suggestion, or want to collaborate? We'd love to hear from you. Reach out through any of the channels below.</p>
+
+      <div class="dl-divider"></div>
+    </div>
+
+    <a class="contact-card" href="mailto:contentdecodylife@gmail.com">
+      <div class="contact-icon">✉</div>
+      <div class="contact-info">
+        <div class="c-label">Email</div>
+        <div class="c-value">contentdecodylife@gmail.com</div>
+      </div>
+    </a>
+
+    <a class="contact-card" href="https://youtube.com/@decodylife" target="_blank">
+      <div class="contact-icon">▶</div>
+      <div class="contact-info">
+        <div class="c-label">YouTube Channel</div>
+        <div class="c-value">youtube.com/@decodylife</div>
+      </div>
+    </a>
+
+    <div style="margin-top:48px;">
+      <div class="page-body">
+        <h3>For collaborations & business</h3>
+        <p>If you're interested in collaborating, sponsoring content, or any business inquiry, please email us with the subject line <strong>"Collaboration — DecodyLife"</strong> and we'll get back to you as soon as possible.</p>
+
+        <h3>Response time</h3>
+        <p>We typically respond within <strong>2–4 business days</strong>. We read every message, so don't hesitate to reach out.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span>© 2026 DecodyLife. All rights reserved. &nbsp;·&nbsp;
+    <a href="index.html">Home</a> &nbsp;·&nbsp;
+    <a href="mailto:contentdecodylife@gmail.com">Contact</a>
+  </span>
+</footer>
+
+<script>
+function showPage(id, btn){
+  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Check URL hash on load
+window.addEventListener('load', function(){
+  const hash = window.location.hash.replace('#','');
+  if(hash){
+    const btn = document.querySelector(`[onclick*="${hash}"]`);
+    if(btn) showPage(hash, btn);
+  }
+});
+</script>
+
+</body>
+</html>
