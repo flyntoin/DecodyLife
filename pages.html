@@ -391,13 +391,15 @@ function showPage(id, btn){
   document.getElementById('page-'+id).classList.add('active');
   btn.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+  window.location.hash = id;
 }
 
 // Check URL hash on load
 window.addEventListener('load', function(){
   const hash = window.location.hash.replace('#','');
-  if(hash){
-    const btn = document.querySelector(`[onclick*="${hash}"]`);
+  const validPages = ['about','privacy','terms','contact'];
+  if(hash && validPages.includes(hash)){
+    const btn = document.querySelector(`.tab-btn[onclick*="'${hash}'"]`);
     if(btn) showPage(hash, btn);
   }
 });
