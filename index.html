@@ -8,7 +8,17 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#000;color:#ddd;font-family:'Source Serif 4',Georgia,serif;min-height:100vh;overflow-x:hidden}
+body{background:#000;color:#c8d4e8;font-family:'Source Serif 4',Georgia,serif;min-height:100vh;overflow-x:hidden}
+:root{
+  --blue-bright:#3b82f6;
+  --blue-mid:#1d4ed8;
+  --blue-dark:#0f172a;
+  --blue-glass:rgba(30,60,120,0.18);
+  --blue-border:rgba(59,130,246,0.20);
+  --blue-glow:rgba(59,130,246,0.12);
+  --white:#ffffff;
+  --off-white:#e8f0ff;
+}
 
 /* ══════════════════════════════
    INTRO SCREEN
@@ -150,24 +160,35 @@ body.light .hero-understand{color:#111;}
 body.light .hero-sub{color:#888;}
 body.light .search-wrap input{background:#eeecea;border-color:#ccc;color:#111;}
 body.light .search-wrap input::placeholder{color:#aaa;}
-body.light .cat-pill{border-color:#ccc;color:#888;}
-body.light .cat-pill:hover{border-color:#888;color:#111;}
-body.light .cat-pill.active{background:#111;color:#fff;border-color:#111;box-shadow:0 0 18px rgba(0,0,0,0.12);}
+body.light .cat-pill{
+  background:linear-gradient(145deg, rgba(235,235,242,0.85) 0%, rgba(225,225,235,0.90) 100%);
+  border-color:rgba(0,0,0,0.10);
+  color:#888;
+  box-shadow:0 4px 14px -4px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.8);
+}
+body.light .cat-pill:hover{border-color:rgba(0,0,0,0.20);color:#111;}
+body.light .cat-pill.active{
+  background:linear-gradient(145deg, rgba(30,30,40,0.90) 0%, rgba(20,20,30,0.95) 100%);
+  color:#e8e8f0;
+  border-color:rgba(180,180,210,0.4);
+  box-shadow:0 0 18px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+}
 body.light .sort-tab{border-color:#ccc;color:#888;}
 body.light .sort-tab:hover{border-color:#888;color:#111;}
 body.light .sort-tab.active{background:#111;color:#fff;border-color:#111;}
 body.light .feed-count{color:#aaa;}
 body.light #feed{background:#ddd;}
 body.light .art-card{
-  background:rgba(245,244,240,0.85);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(0,0,0,0.08);
+  background:linear-gradient(145deg, rgba(240,240,245,0.85) 0%, rgba(230,230,238,0.92) 100%);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(0,0,0,0.10);
+  box-shadow:0 8px 32px -8px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
 }
 body.light .art-card:hover{
-  background:rgba(255,255,255,0.96);
-  border-color:rgba(0,0,0,0.15);
-  box-shadow:0 20px 35px -15px rgba(0,0,0,0.1);
+  background:linear-gradient(145deg, rgba(252,252,255,0.96) 0%, rgba(244,244,250,0.98) 100%);
+  border-color:rgba(0,0,0,0.18);
+  box-shadow:0 20px 40px -15px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.9);
 }
 body.light .art-dot{background:#ccc;border-color:#bbb;}
 body.light .art-card:hover .art-dot{background:#111;border-color:#111;}
@@ -232,10 +253,10 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 .hn-link{
   font-family:'IBM Plex Mono',monospace;
   font-size:11px;letter-spacing:0.1em;
-  text-transform:uppercase;color:#444;
+  text-transform:uppercase;color:#8daacf;
   text-decoration:none;transition:color 0.2s;
 }
-.hn-link:hover{color:#ccc;}
+.hn-link:hover{color:#93c5fd;}
 @media(max-width:560px){
   .header-nav .hn-link{display:none;}
 }
@@ -258,9 +279,10 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
   font-family:'IBM Plex Mono',monospace;
   font-size:10px;letter-spacing:0.18em;
   text-transform:uppercase;
-  color:#555;border:1px solid #1e1e1e;
+  color:#3b82f6;border:1px solid rgba(59,130,246,0.30);
   padding:5px 16px;border-radius:20px;
   margin-bottom:28px;
+  background:rgba(59,130,246,0.06);
 }
 .hero-understand{
   font-family:'Playfair Display',serif;
@@ -276,76 +298,84 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 }
 .hero-sub{
   font-family:'Source Serif 4',serif;
-  font-size:15px;color:#999;
+  font-size:15px;color:#c8d4e8;
   max-width:440px;margin:0 auto 36px;
   line-height:1.7;font-weight:300;
 }
-.hero-cycling-wrap{
-  display:inline-block;
-  width:clamp(200px,60vw,440px);
-  overflow:hidden;
-  background:#fff;
-  border-radius:3px;
-  vertical-align:middle;
-  padding:4px 18px 8px;
-}
-.hero-cycling{
-  display:block;
-  width:100%;
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-  border-right:3px solid #000;
-  animation:cursorBlink 0.75s step-end infinite;
-  font-style:italic;
-  color:#000;
-  font-family:'Playfair Display',serif;
-  font-weight:900;
-  font-size:clamp(32px,6vw,72px);
-  line-height:1.1;
-}
-@keyframes cursorBlink{0%,100%{border-color:#000}50%{border-color:transparent}}
+/* hero cycling wrap removed — replaced by 3D cube */
 
 /* ══════════════════════════════
-   SEARCH
+   SEARCH (now inside category block)
 ══════════════════════════════ */
+.cats-search-wrap{
+  max-width:560px;margin:0 auto 20px;
+  padding:0 20px;
+  position:relative;
+}
+.cats-search-wrap input{
+  width:100%;
+  background:rgba(5,15,40,0.85);
+  border:1px solid rgba(59,130,246,0.25);
+  color:#c8d4e8;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:14px;
+  padding:14px 20px 14px 48px;
+  outline:none;
+  border-radius:8px;
+  transition:border-color 0.2s, box-shadow 0.2s;
+}
+.cats-search-wrap input::placeholder{color:#8daacf}
+.cats-search-wrap input:focus{
+  border-color:rgba(59,130,246,0.50);
+  box-shadow:0 0 0 3px rgba(59,130,246,0.08);
+}
+.cats-search-wrap .s-icon{
+  position:absolute;left:36px;top:50%;
+  transform:translateY(-50%);
+  color:#3b82f6;pointer-events:none;
+  opacity:0.6;
+}
+/* keep the old search-wrap for any fallback */
 .search-wrap{
   max-width:560px;margin:36px auto 0;
   position:relative;
 }
 .search-wrap input{
   width:100%;
-  background:#0c0c0c;
-  border:1px solid #222;
-  color:#e0e0e0;
+  background:rgba(5,15,40,0.85);
+  border:1px solid rgba(59,130,246,0.25);
+  color:#c8d4e8;
   font-family:'IBM Plex Mono',monospace;
   font-size:14px;
   padding:14px 20px 14px 48px;
   outline:none;
-  border-radius:2px;
+  border-radius:8px;
   transition:border-color 0.2s;
 }
-.search-wrap input::placeholder{color:#666}
-.search-wrap input:focus{border-color:#444}
+.search-wrap input::placeholder{color:#8daacf}
+.search-wrap input:focus{border-color:rgba(59,130,246,0.50)}
 .search-wrap .s-icon{
   position:absolute;left:16px;top:50%;
   transform:translateY(-50%);
-  color:#777;pointer-events:none;
+  color:#3b82f6;pointer-events:none;opacity:0.6;
 }
 .search-results-drop{
   position:absolute;top:calc(100% + 4px);left:0;right:0;
-  background:#0a0a0a;border:1px solid #1e1e1e;
+  background:rgba(5,12,32,0.97);border:1px solid rgba(59,130,246,0.22);
   z-index:200;display:none;
+  border-radius:8px;
+  overflow:hidden;
+  backdrop-filter:blur(12px);
 }
 .search-results-drop.show{display:block}
 .s-drop-item{
   padding:12px 20px;cursor:pointer;
-  border-bottom:1px solid #111;
+  border-bottom:1px solid rgba(59,130,246,0.08);
   transition:background 0.15s;
 }
-.s-drop-item:hover{background:#111}
-.s-drop-item .sd-title{font-size:14px;color:#ddd}
-.s-drop-item .sd-cat{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#444;text-transform:uppercase;margin-top:2px}
+.s-drop-item:hover{background:rgba(30,60,120,0.20)}
+.s-drop-item .sd-title{font-size:14px;color:#c8d4e8}
+.s-drop-item .sd-cat{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3b82f6;text-transform:uppercase;margin-top:2px;opacity:0.7}
 
 /* ══════════════════════════════
    CATEGORY PILLS
@@ -357,28 +387,42 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
   justify-content:center;
 }
 .cat-pill{
-  background:none;border:1px solid #1e1e1e;
-  color:#555;font-family:'IBM Plex Mono',monospace;
+  background:linear-gradient(145deg, rgba(5,15,40,0.90) 0%, rgba(3,8,25,0.95) 100%);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(59,130,246,0.18);
+  color:#c8d4e8;
+  font-family:'IBM Plex Mono',monospace;
   font-size:11px;letter-spacing:0.1em;
   text-transform:uppercase;padding:10px 18px;
-  cursor:pointer;border-radius:2px;
+  cursor:pointer;border-radius:20px;
   transition:all 0.25s cubic-bezier(0.4,0,0.2,1);
   white-space:nowrap;
   position:relative;overflow:hidden;
+  box-shadow:0 4px 14px -4px rgba(0,0,20,0.6), inset 0 1px 0 rgba(59,130,246,0.06);
 }
 .cat-pill::after{
   content:'';
-  position:absolute;inset:0;
-  background:rgba(255,255,255,0.04);
-  opacity:0;
-  transition:opacity 0.2s;
+  position:absolute;
+  top:0; left:10%; right:10%;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(59,130,246,0.25), transparent);
+  border-radius:50%;
+  pointer-events:none;
 }
-.cat-pill:hover{border-color:#555;color:#ccc;transform:translateY(-1px);}
-.cat-pill:hover::after{opacity:1;}
+.cat-pill:hover{
+  border-color:rgba(59,130,246,0.38);
+  color:#93c5fd;
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px -6px rgba(0,0,30,0.7), 0 0 15px -5px rgba(59,130,246,0.15), inset 0 1px 0 rgba(59,130,246,0.10);
+  background:linear-gradient(145deg, rgba(8,20,55,0.95) 0%, rgba(5,12,35,0.98) 100%);
+}
 .cat-pill:active{transform:translateY(0px) scale(0.97);}
 .cat-pill.active{
-  background:#fff;color:#000;border-color:#fff;
-  box-shadow:0 0 18px rgba(255,255,255,0.12);
+  background:linear-gradient(145deg, rgba(29,78,216,0.35) 0%, rgba(15,40,140,0.25) 100%);
+  color:#bfdbfe;
+  border-color:rgba(59,130,246,0.55);
+  box-shadow:0 0 20px rgba(59,130,246,0.12), 0 6px 20px -6px rgba(0,0,30,0.7), inset 0 1px 0 rgba(59,130,246,0.18);
   transform:translateY(-1px);
 }
 
@@ -393,8 +437,8 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 }
 .sort-tab{
   background:none;
-  border:1px solid #1e1e1e;
-  color:#444;
+  border:1px solid rgba(59,130,246,0.18);
+  color:#c8d4e8;
   font-family:'IBM Plex Mono',monospace;
   font-size:11px;letter-spacing:0.1em;
   text-transform:uppercase;
@@ -403,8 +447,8 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
   border-radius:2px;
   transition:all 0.2s;
 }
-.sort-tab:hover{border-color:#555;color:#ccc;}
-.sort-tab.active{background:#fff;color:#000;border-color:#fff;}
+.sort-tab:hover{border-color:rgba(59,130,246,0.45);color:#93c5fd;}
+.sort-tab.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8;box-shadow:0 0 15px rgba(29,78,216,0.30);}
 
 /* ══════════════════════════════
    ARTICLE LIST
@@ -415,10 +459,9 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 }
 .feed-count{
   font-family:'IBM Plex Mono',monospace;
-  font-size:11px;color:#888;
+  font-size:11px;color:#8daacf;
   text-transform:uppercase;letter-spacing:0.1em;
   padding:20px 0 18px;
-  color:#888;
 }
 
 /* CARD GRID */
@@ -442,59 +485,97 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 .art-card{
   display:flex;
   flex-direction:column;
-  background:rgba(10,10,10,0.75);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+  /* Blue-tinted glass frame */
+  background:linear-gradient(145deg, rgba(10,18,40,0.85) 0%, rgba(5,10,25,0.92) 100%);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
   padding:28px 24px 24px;
   cursor:pointer;
   position:relative;
-  transition:all 0.3s cubic-bezier(0.2,0.8,0.4,1);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:28px;
+  transition:all 0.35s cubic-bezier(0.2,0.8,0.4,1);
+  border:1px solid rgba(59,130,246,0.18);
+  border-radius:22px;
   margin:6px;
   min-height:200px;
   gap:0;
   overflow:hidden;
+  box-shadow:
+    0 8px 32px -8px rgba(0,0,20,0.8),
+    0 0 0 1px rgba(59,130,246,0.06),
+    inset 0 1px 0 rgba(59,130,246,0.10),
+    inset 0 -1px 0 rgba(0,0,0,0.5);
 }
+/* Top blue shimmer line */
 .art-card::before{
   content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,0.04) 0%,transparent 60%);
-  opacity:0;
-  transition:opacity 0.25s;
+  border-radius:22px;
+  padding:1px;
+  background:linear-gradient(120deg, rgba(255,255,255,0.25), rgba(59,130,246,0.45), transparent);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
   pointer-events:none;
-  border-radius:28px;
+  opacity:0;
+  transition:opacity 0.35s;
+}
+/* Inner glass highlight overlay */
+.art-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,
+    rgba(59,130,246,0.07) 0%,
+    rgba(30,80,200,0.02) 40%,
+    transparent 70%);
+  opacity:0;
+  transition:opacity 0.3s;
+  pointer-events:none;
+  border-radius:22px;
 }
 .art-card:hover{
-  border-color:rgba(255,255,255,0.22);
-  background:rgba(15,15,15,0.85);
-  transform:translateY(-5px);
-  box-shadow:0 20px 35px -15px rgba(0,0,0,0.5);
+  border-color:rgba(59,130,246,0.40);
+  background:linear-gradient(145deg, rgba(12,22,55,0.94) 0%, rgba(8,14,38,0.97) 100%);
+  transform:translateY(-6px);
+  box-shadow:
+    0 28px 48px -16px rgba(0,0,30,0.9),
+    0 0 30px -8px rgba(59,130,246,0.18),
+    0 0 0 1px rgba(59,130,246,0.14),
+    inset 0 1px 0 rgba(59,130,246,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.6);
 }
 .art-card:hover::before{opacity:1;}
+.art-card:hover::after{opacity:1;}
 
-/* top accent dot like image */
+/* top accent dot — blue glass style */
 .art-dot{
   width:7px;height:7px;
   border-radius:50%;
-  background:#333;
-  border:1px solid #444;
+  background:rgba(30,80,200,0.35);
+  border:1px solid rgba(59,130,246,0.30);
   margin-bottom:20px;
   flex-shrink:0;
+  box-shadow:0 0 6px rgba(59,130,246,0.15);
 }
-.art-card:hover .art-dot{background:#fff;border-color:#fff;}
+.art-card:hover .art-dot{
+  background:rgba(59,130,246,0.85);
+  border-color:rgba(147,197,253,0.8);
+  box-shadow:0 0 12px rgba(59,130,246,0.50);
+}
 
 .art-cat{
   font-family:'IBM Plex Mono',monospace;
   font-size:9px;letter-spacing:0.16em;
-  text-transform:uppercase;color:#aaa;
+  text-transform:uppercase;color:#3b82f6;
   margin-bottom:10px;
 }
 .art-title{
   font-family:'Playfair Display',serif;
   font-size:clamp(16px,2vw,20px);
-  font-weight:700;color:#d0d0d0;
+  font-weight:700;color:#c8d4e8;
   line-height:1.35;
   flex:1;
 }
@@ -502,7 +583,7 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 
 .art-excerpt{
   font-family:'Source Serif 4',serif;
-  font-size:12px;color:#888;
+  font-size:12px;color:#6a8ab0;
   line-height:1.6;
   margin-top:12px;
   font-weight:300;
@@ -511,25 +592,25 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
   -webkit-box-orient:vertical;
   overflow:hidden;
 }
-.art-card:hover .art-excerpt{color:#bbb;}
+.art-card:hover .art-excerpt{color:#8daacf;}
 
 .art-footer{
   display:flex;align-items:center;
   justify-content:space-between;
   margin-top:20px;
   padding-top:14px;
-  border-top:1px solid rgba(255,255,255,0.07);
+  border-top:1px solid rgba(59,130,246,0.12);
 }
 .art-meta{
   font-family:'IBM Plex Mono',monospace;
-  font-size:9px;color:#777;letter-spacing:0.06em;
+  font-size:9px;color:#7a9ac0;letter-spacing:0.06em;
 }
 .art-arrow{
-  font-size:11px;color:#666;
+  font-size:11px;color:#6a8fba;
   transition:color 0.2s,transform 0.2s;
 }
-.art-card:hover .art-arrow{color:#888;transform:translateX(3px);}
-.art-card:hover .art-meta{color:#aaa;}
+.art-card:hover .art-arrow{color:#3b82f6;transform:translateX(3px);}
+.art-card:hover .art-meta{color:#6b9ac4;}
 
 /* PAGINATION */
 .pagination{
@@ -538,13 +619,13 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
   padding:40px 0 20px;
 }
 .pg-btn{
-  background:none;border:1px solid #1a1a1a;
-  color:#555;font-family:'IBM Plex Mono',monospace;
+  background:none;border:1px solid rgba(59,130,246,0.18);
+  color:#7a9ac0;font-family:'IBM Plex Mono',monospace;
   font-size:12px;padding:8px 14px;
   cursor:pointer;transition:all 0.2s;
 }
-.pg-btn:hover{border-color:#555;color:#ddd}
-.pg-btn.active{background:#fff;color:#000;border-color:#fff}
+.pg-btn:hover{border-color:rgba(59,130,246,0.45);color:#93c5fd}
+.pg-btn.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8;box-shadow:0 0 12px rgba(29,78,216,0.30);}
 .pg-btn.next-btn{padding:8px 18px;letter-spacing:0.05em}
 
 /* ══════════════════════════════
@@ -565,16 +646,16 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 .back-btn{
   display:inline-flex;align-items:center;gap:7px;
   font-family:'IBM Plex Mono',monospace;
-  font-size:11px;color:#aaa;
+  font-size:11px;color:#8daacf;
   background:none;border:none;padding:0;
   cursor:pointer;margin-bottom:32px;
   transition:color 0.2s;
 }
-.back-btn:hover{color:#fff}
+.back-btn:hover{color:#93c5fd}
 .a-cat{
   font-family:'IBM Plex Mono',monospace;
   font-size:10px;letter-spacing:0.15em;
-  text-transform:uppercase;color:#aaa;
+  text-transform:uppercase;color:#3b82f6;
   margin-bottom:14px;
 }
 .a-title{
@@ -587,125 +668,128 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 .a-meta{
   display:flex;align-items:center;gap:14px;
   font-family:'IBM Plex Mono',monospace;
-  font-size:11px;color:#888;
+  font-size:11px;color:#8daacf;
   margin-bottom:28px;padding-bottom:22px;
-  border-bottom:1px solid #111;
+  border-bottom:1px solid rgba(59,130,246,0.10);
 }
 .a-thumb{
   width:100%;aspect-ratio:16/9;
-  background:#0a0a0a;margin-bottom:36px;
-  overflow:hidden;border:1px solid #161616;
+  background:rgba(5,15,40,0.8);margin-bottom:36px;
+  overflow:hidden;border:1px solid rgba(59,130,246,0.14);
   display:flex;align-items:center;justify-content:center;
 }
 .a-thumb img{width:100%;height:100%;object-fit:cover}
 .a-content{
   font-family:'Source Serif 4',serif;
-  font-size:18px;line-height:1.9;color:#ccc;
+  font-size:18px;line-height:1.9;color:#e8edf5;
 }
 .a-content p{margin-bottom:22px}
 .a-content .brk{
-  text-align:center;color:#222;
+  text-align:center;color:#5a7a9a;
   margin:36px 0;letter-spacing:8px;font-size:12px;
 }
-.a-content .hl{color:#f0f0f0;font-style:italic}
+.a-content .hl{color:#c8d8f0;font-style:italic}
 .a-content .sig{
   margin-top:40px;
   font-family:'IBM Plex Mono',monospace;
-  font-size:12px;color:#2a2a2a;letter-spacing:0.05em;
+  font-size:12px;color:#5a7a9a;letter-spacing:0.05em;
 }
 
 /* REACTIONS */
 .reactions{
   margin-top:52px;padding-top:28px;
-  border-top:1px solid #111;
+  border-top:1px solid rgba(59,130,246,0.10);
 }
 .like-row{display:flex;align-items:center;gap:14px;margin-bottom:44px}
 .like-btn{
   display:flex;align-items:center;gap:7px;
-  background:none;border:1px solid #222;
-  color:#666;font-family:'IBM Plex Mono',monospace;
+  background:none;border:1px solid rgba(59,130,246,0.22);
+  color:#3a5575;font-family:'IBM Plex Mono',monospace;
   font-size:12px;padding:9px 18px;
   cursor:pointer;transition:all 0.2s;
 }
-.like-btn:hover{border-color:#888;color:#ddd}
-.like-btn.liked{background:#fff;color:#000;border-color:#fff}
-.like-count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#888}
+.like-btn:hover{border-color:rgba(59,130,246,0.50);color:#93c5fd}
+.like-btn.liked{background:#1d4ed8;color:#fff;border-color:#1d4ed8;box-shadow:0 0 12px rgba(29,78,216,0.30);}
+.like-count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#7a9ac0}
 
 .comments-section h3{
   font-family:'IBM Plex Mono',monospace;
   font-size:11px;letter-spacing:0.12em;
-  text-transform:uppercase;color:#444;
+  text-transform:uppercase;color:#6a8fba;
   margin-bottom:20px;
 }
 .c-form{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
 .c-form input,.c-form textarea{
-  background:#080808;border:1px solid #1a1a1a;
-  color:#ddd;font-family:'Source Serif 4',serif;
+  background:rgba(5,12,30,0.85);border:1px solid rgba(59,130,246,0.15);
+  color:#c8d4e8;font-family:'Source Serif 4',serif;
   font-size:15px;padding:11px 14px;
   outline:none;resize:none;width:100%;
   transition:border-color 0.2s;
 }
-.c-form input::placeholder,.c-form textarea::placeholder{color:#252525}
-.c-form input:focus,.c-form textarea:focus{border-color:#333}
+.c-form input::placeholder,.c-form textarea::placeholder{color:#4a6a8a}
+.c-form input:focus,.c-form textarea:focus{border-color:rgba(59,130,246,0.40)}
 .c-submit{
   align-self:flex-start;
-  background:#fff;color:#000;border:none;
+  background:#1d4ed8;color:#fff;border:none;
   font-family:'IBM Plex Mono',monospace;
   font-size:11px;letter-spacing:0.05em;
   padding:9px 22px;cursor:pointer;
-  transition:opacity 0.2s;
+  transition:opacity 0.2s, box-shadow 0.2s;
+  box-shadow:0 0 0 rgba(29,78,216,0);
 }
-.c-submit:hover{opacity:0.82}
+.c-submit:hover{opacity:0.85;box-shadow:0 0 15px rgba(29,78,216,0.35);}
 .c-list{display:flex;flex-direction:column}
-.c-item{padding:18px 0;border-bottom:1px solid #0e0e0e}
+.c-item{padding:18px 0;border-bottom:1px solid rgba(59,130,246,0.06)}
 .c-author{
   font-family:'IBM Plex Mono',monospace;
-  font-size:11px;color:#ccc;margin-bottom:5px;
+  font-size:11px;color:#93c5fd;margin-bottom:5px;
 }
-.c-date{color:#2a2a2a;margin-left:8px}
-.c-text{font-size:14px;color:#777;line-height:1.6}
-.c-empty{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#777;padding:14px 0}
+.c-date{color:#4a6a8a;margin-left:8px}
+.c-text{font-size:14px;color:#8daacf;line-height:1.6}
+.c-empty{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6a8fba;padding:14px 0}
 
 /* RELATED */
 .related{
   max-width:1100px;margin:0 auto;
   padding:0 20px 80px;
-  border-top:1px solid #111;
+  border-top:1px solid rgba(59,130,246,0.10);
 }
 .related-title{
   font-family:'IBM Plex Mono',monospace;
   font-size:11px;letter-spacing:0.12em;
-  text-transform:uppercase;color:#888;
+  text-transform:uppercase;color:#3b82f6;
+  opacity:0.6;
   padding:32px 0 20px;
 }
 .related-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:1px;background:#111;
+  gap:1px;background:rgba(59,130,246,0.06);
 }
 .rel-card{
   background:#000;padding:20px;
   cursor:pointer;transition:background 0.15s;
 }
-.rel-card:hover{background:#0a0a0a}
+.rel-card:hover{background:rgba(5,15,40,0.8)}
 .rel-thumb{
   width:100%;aspect-ratio:16/9;
-  background:#0d0d0d;margin-bottom:12px;
+  background:rgba(5,12,30,0.8);margin-bottom:12px;
   overflow:hidden;display:flex;
   align-items:center;justify-content:center;
-  border:1px solid #111;
+  border:1px solid rgba(59,130,246,0.10);
 }
 .rel-thumb img{width:100%;height:100%;object-fit:cover}
 .rel-cat{
   font-family:'IBM Plex Mono',monospace;
   font-size:9px;letter-spacing:0.1em;
-  text-transform:uppercase;color:#888;
+  text-transform:uppercase;color:#3b82f6;
+  opacity:0.6;
   margin-bottom:6px;
 }
 .rel-title{
   font-family:'Playfair Display',serif;
   font-size:15px;font-weight:700;
-  color:#ddd;line-height:1.3;
+  color:#8daacf;line-height:1.3;
 }
 
 /* EMPTY STATE */
@@ -728,13 +812,13 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 }
 .empty-headline{
   font-size:13px;
-  color:#3a3a3a;
+  color:#6a8fba;
   letter-spacing:0.08em;
   margin-bottom:8px;
 }
 .empty-sub{
   font-size:10px;
-  color:#222;
+  color:#4a6a8a;
   letter-spacing:0.12em;
   text-transform:uppercase;
 }
@@ -742,7 +826,7 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:#000}
-::-webkit-scrollbar-thumb{background:#1a1a1a}
+::-webkit-scrollbar-thumb{background:rgba(29,78,216,0.30)}
 
 /* ══════════════════════════════
    TICKER STRIP DIVIDER
@@ -750,8 +834,8 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 .ticker-strip{
   width:100%;
   overflow:hidden;
-  border-top:1px solid #1a1a1a;
-  border-bottom:1px solid #1a1a1a;
+  border-top:1px solid rgba(59,130,246,0.10);
+  border-bottom:1px solid rgba(59,130,246,0.10);
   background:#000;
   padding:11px 0;
   position:relative;
@@ -760,8 +844,8 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
   contain:layout style;
 }
 .ticker-strip.light-ticker{
-  background:rgba(101,72,48,0.10);
-  border-color:rgba(101,72,48,0.18);
+  background:rgba(29,78,216,0.06);
+  border-color:rgba(59,130,246,0.15);
 }
 .ticker-track{
   display:flex;
@@ -781,7 +865,7 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
   font-size:10px;
   letter-spacing:0.22em;
   text-transform:uppercase;
-  color:#888;
+  color:#6a8fba;
   white-space:nowrap;
   padding:0 28px;
   display:flex;
@@ -791,17 +875,17 @@ body.light ::-webkit-scrollbar-thumb{background:#ccc;}
 .ticker-item::after{
   content:'✦';
   font-size:7px;
-  color:#555;
+  color:#4a6a8a;
 }
 /* alternate strip */
 .ticker-strip.alt{
-  background:#0a0a0a;
+  background:rgba(5,10,25,0.5);
 }
 .ticker-strip.alt .ticker-item{
-  color:#777;
+  color:#5a7a9a;
 }
 .ticker-strip.alt .ticker-item::after{
-  color:#444;
+  color:#4a6a8a;
 }
 /* light mode */
 body.light .ticker-strip{
@@ -827,20 +911,21 @@ body.light .ticker-item::after{
 .hs-block{
   max-width:1100px;
   margin:20px auto;
-  background:linear-gradient(145deg, #111 0%, #0a0a0a 100%);
-  border:1px solid #2a2a2a;
+  background:linear-gradient(145deg, rgba(5,12,30,0.92) 0%, rgba(3,8,20,0.96) 100%);
+  border:1px solid rgba(59,130,246,0.14);
   border-radius:10px;
   overflow:hidden;
-  box-shadow:0 4px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
+  box-shadow:0 4px 32px rgba(0,0,20,0.7), 0 0 0 1px rgba(59,130,246,0.05), inset 0 1px 0 rgba(59,130,246,0.06);
 }
 .hs-label{
   font-family:'IBM Plex Mono',monospace;
   font-size:9px;
   letter-spacing:0.22em;
   text-transform:uppercase;
-  color:#444;
+  color:#3b82f6;
+  opacity:0.65;
   padding:14px 20px 12px;
-  border-bottom:1px solid #1a1a1a;
+  border-bottom:1px solid rgba(59,130,246,0.10);
 }
 .hs-block .hero{
   margin:0;
@@ -866,7 +951,183 @@ body.light .ticker-item::after{
 @media(max-width:1140px){
   .hs-block{ margin:16px 12px; }
 }
+
+/* ══════════════════════════════
+   3D CUBE — HERO
+══════════════════════════════ */
+.hero-3d-cube{
+  display:inline-block;
+  perspective:1200px;
+  margin:0 auto;
+}
+.cube-container{
+  width:clamp(200px,50vw,380px);
+  height:clamp(60px,8vw,90px);
+  margin:0 auto;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.cube{
+  width:100%;height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transform:rotateY(0deg);
+  transition:transform 0.75s cubic-bezier(0.4,0.2,0.2,0.9);
+}
+.cube-face{
+  position:absolute;
+  width:100%;height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:clamp(32px,6vw,68px);
+  color:#0f172a;
+  background:linear-gradient(135deg, #ffffff 0%, #dbeafe 60%, #bfdbfe 100%);
+  border-radius:14px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.6), 0 0 24px rgba(59,130,246,0.45), inset 0 1px 0 rgba(255,255,255,0.9);
+  text-align:center;
+  line-height:1.1;
+  backface-visibility:hidden;
+  border:1px solid rgba(255,255,255,0.6);
+  letter-spacing:-0.5px;
+  text-shadow:none;
+}
+/* face positions — translateZ = half the height */
+.front  { transform:translateZ(45px); }
+.back   { transform:rotateY(180deg) translateZ(45px); }
+.right  { transform:rotateY(90deg)  translateZ(45px); }
+.left   { transform:rotateY(-90deg) translateZ(45px); }
+.top    { transform:rotateX(90deg)  translateZ(45px); }
+.bottom { transform:rotateX(-90deg) translateZ(45px); }
+
+@media(max-width:640px){
+  .cube-face{ border-radius:10px; }
+  .front  { transform:translateZ(35px); }
+  .back   { transform:rotateY(180deg)  translateZ(35px); }
+  .right  { transform:rotateY(90deg)   translateZ(35px); }
+  .left   { transform:rotateY(-90deg)  translateZ(35px); }
+  .top    { transform:rotateX(90deg)   translateZ(35px); }
+  .bottom { transform:rotateX(-90deg)  translateZ(35px); }
+}
+body.light .cube-face{
+  background:linear-gradient(135deg, #2563eb 0%, #1d4ed8 60%, #1e3a8a 100%);
+  box-shadow:0 8px 30px rgba(37,99,235,0.35), inset 0 1px 0 rgba(147,197,253,0.4);
+}
 </style>
+
+<!-- ══ FIREBASE ══ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, increment, onSnapshot, collection, addDoc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBiB185lyn034l2ByqQCOrTnXW9X4ATRe8",
+  authDomain: "decody-life.firebaseapp.com",
+  projectId: "decody-life",
+  storageBucket: "decody-life.firebasestorage.app",
+  messagingSenderId: "1021862706752",
+  appId: "1:1021862706752:web:c2cc4ab2496ae87c1d69a5",
+  measurementId: "G-YCNZHEX452"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ── USER ID (anonymous, persistent) ──
+function getUserId(){
+  let uid = localStorage.getItem('dl_uid');
+  if(!uid){ uid = 'u_' + Math.random().toString(36).slice(2) + Date.now(); localStorage.setItem('dl_uid', uid); }
+  return uid;
+}
+const UID = getUserId();
+
+// ── VIEWS: increment on article open, listen live ──
+window.fbTrackView = async function(articleId){
+  const ref = doc(db, 'articles', String(articleId));
+  try {
+    const snap = await getDoc(ref);
+    if(!snap.exists()) await setDoc(ref, { views: 1, likes: 0 });
+    else await updateDoc(ref, { views: increment(1) });
+  } catch(e){}
+
+  onSnapshot(ref, snap => {
+    const el = document.getElementById('view-count');
+    if(el && snap.exists()) el.textContent = (snap.data()?.views || 0) + ' views';
+  });
+};
+
+// ── LIKES: toggle, show real count ──
+window.fbToggleLike = async function(articleId){
+  const articleRef = doc(db, 'articles', String(articleId));
+  const likeRef   = doc(db, 'articles', String(articleId), 'likedBy', UID);
+
+  const likeSnap = await getDoc(likeRef);
+  const isLiked  = likeSnap.exists();
+
+  if(isLiked){
+    await deleteDoc(likeRef);
+    await updateDoc(articleRef, { likes: increment(-1) });
+    window._fbLiked = window._fbLiked || {};
+    window._fbLiked[articleId] = false;
+  } else {
+    await setDoc(likeRef, { uid: UID, time: serverTimestamp() });
+    await updateDoc(articleRef, { likes: increment(1) });
+    window._fbLiked = window._fbLiked || {};
+    window._fbLiked[articleId] = true;
+  }
+};
+
+window.fbListenLikes = function(articleId){
+  const ref = doc(db, 'articles', String(articleId));
+  onSnapshot(ref, snap => {
+    const count = snap.data()?.likes || 0;
+    const likeRef = doc(db, 'articles', String(articleId), 'likedBy', UID);
+    getDoc(likeRef).then(ls => {
+      const liked = ls.exists();
+      window._fbLiked = window._fbLiked || {};
+      window._fbLiked[articleId] = liked;
+      if(window.updateLikeBtn) window.updateLikeBtn(liked, count);
+    });
+  });
+};
+
+// ── COMMENTS: real-time ──
+window.fbPostComment = async function(articleId, name, text){
+  await addDoc(collection(db, 'articles', String(articleId), 'comments'), {
+    name, text, time: serverTimestamp()
+  });
+};
+
+window.fbListenComments = function(articleId){
+  const q = query(
+    collection(db, 'articles', String(articleId), 'comments'),
+    orderBy('time', 'desc')
+  );
+  onSnapshot(q, snap => {
+    const list = document.getElementById('c-list');
+    if(!list) return;
+    if(snap.empty){
+      list.innerHTML = '<div class="c-empty">No comments yet. Be the first.</div>';
+      return;
+    }
+    list.innerHTML = snap.docs.map(d => {
+      const c = d.data();
+      const date = c.time?.toDate ? c.time.toDate().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : 'Just now';
+      const safeName = c.name.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      const safeText = c.text.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return `<div class="c-item">
+        <div class="c-author">${safeName}<span class="c-date">${date}</span></div>
+        <div class="c-text">${safeText}</div>
+      </div>`;
+    }).join('');
+  });
+};
+</script>
+
 </head>
 <body>
 
@@ -904,23 +1165,34 @@ body.light .ticker-item::after{
         <div class="hero-badge">✦ Knowledge Platform</div>
         <div class="hero-understand">
           Understand the<br>
-          <span><div class="hero-cycling-wrap"><span class="hero-cycling" id="cycling-word">Business</span></div></span>
+          <span class="hero-3d-cube">
+            <div class="cube-container">
+              <div class="cube" id="rotatingCube">
+                <div class="cube-face front">Business</div>
+                <div class="cube-face back">Psychology</div>
+                <div class="cube-face right">Marketing</div>
+                <div class="cube-face left">Skills</div>
+                <div class="cube-face top">Productivity</div>
+                <div class="cube-face bottom">Finance</div>
+              </div>
+            </div>
+          </span>
         </div>
         <p class="hero-sub">Real insights on Business, Psychology, Finance & more — decoded simply for you.</p>
-        <div class="search-wrap">
-          <svg class="s-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="text" id="search-input" placeholder="Search articles, topics, skills..."
-            oninput="handleSearch(this.value)"
-            onfocus="showDrop()"
-            onblur="hideDrop()"/>
-          <div class="search-results-drop" id="search-drop"></div>
-        </div>
       </div>
     </div>
 
     <!-- CATEGORIES BLOCK -->
     <div class="hs-block">
       <div class="hs-label">Browse Topics</div>
+      <div class="cats-search-wrap">
+        <svg class="s-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="search-input" placeholder="Search articles, topics, skills..."
+          oninput="handleSearch(this.value)"
+          onfocus="showDrop()"
+          onblur="hideDrop()"/>
+        <div class="search-results-drop" id="search-drop"></div>
+      </div>
       <div class="cats">
         <button class="cat-pill active" onclick="filterCat('all',this)">All</button>
         <button class="cat-pill" onclick="filterCat('business',this)">Business</button>
@@ -965,6 +1237,7 @@ body.light .ticker-item::after{
       <div class="a-cat" id="a-cat"></div>
       <h1 class="a-title" id="a-title"></h1>
       <div class="a-meta" id="a-meta"></div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#3b82f6;opacity:0.7;margin-bottom:20px;" id="view-count">— views</div>
       <div class="a-thumb" id="a-thumb"></div>
       <div class="a-content" id="a-content"></div>
       <div class="reactions">
@@ -1193,13 +1466,981 @@ const ARTICLES = [
       <p><span class="hl">Think.</span></p>
       <p><span class="hl">And then move.</span></p>
     `
+  },
+  {
+    id: 3,
+    title: "The Real Reason Entrepreneurs Fail",
+    category: "business",
+    date: "Apr 17, 2026",
+    readTime: "9 min read",
+    likes: 0,
+    excerpt: "He had an idea. He had energy. He worked hard. And two years later — he was sitting empty, broken, exhausted. He didn't choose the wrong idea. He didn't work less. So what actually happened?",
+    thumbnail: "",
+    content: `
+      <p>There was a man.</p>
+      <p>He had an idea.</p>
+      <p>He had energy.</p>
+      <p>He had fire.</p>
+      <p>He left everything behind.</p>
+      <p>He started his own venture.</p>
+      <p>And two years later — he was sitting exhausted, broken, empty.</p>
+      <p>He hadn't chosen the wrong idea.</p>
+      <p>He hadn't worked less.</p>
+      <p><span class="hl">So what went wrong?</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>The world gives us easy answers.</p>
+      <p>"There wasn't enough money."</p>
+      <p>"The market wasn't ready."</p>
+      <p>"The timing was off."</p>
+      <p>These answers sound reasonable.</p>
+      <p>But they are not the real ones.</p>
+      <p>The real answer lives much deeper inside.</p>
+      <p>And it's a little uncomfortable.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Entrepreneurs don't fail because something outside went wrong.</p>
+      <p>Entrepreneurs fail because something inside went wrong.</p>
+      <p>And that "inside thing" — they couldn't even see it themselves.</p>
+      <p><span class="hl">That is the real tragedy.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>The first real reason — <span class="hl">seeing yourself as the hero.</span></p>
+      <p>When someone starts a business — there's a story playing in their head.</p>
+      <p>In that story, they are the hero.</p>
+      <p>In that story, everything goes their way.</p>
+      <p>In that story, people listen to them.</p>
+      <p>But real life doesn't follow anyone's story.</p>
+      <p>And when reality diverges from that story — the person breaks.</p>
+      <p>Because they weren't seeing the truth — they were only seeing their own narrative.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Psychology calls this — <span class="hl">"Narrative Bias."</span></p>
+      <p>We all construct our own story.</p>
+      <p>And then we start treating that story as reality.</p>
+      <p>The entrepreneur does exactly this.</p>
+      <p>They get so lost in their own story — they stop seeing what's actually true.</p>
+      <div class="brk">· · ·</div>
+
+      <p>The second real reason — <span class="hl">hunger for validation.</span></p>
+      <p>Every human wants to be told they're doing great.</p>
+      <p>That's just human nature.</p>
+      <p>But for an entrepreneur — this hunger becomes a trap.</p>
+      <p>They build their product.</p>
+      <p>They show it to friends.</p>
+      <p>Friends say — "Wow, this is amazing."</p>
+      <p>And they think — "That's it, I'm done."</p>
+      <p>But friends don't tell the truth.</p>
+      <p>Friends don't want to break your heart.</p>
+      <p>And inside that false praise — the real feedback gets buried.</p>
+      <div class="brk">· · ·</div>
+
+      <p>A person who fears hearing the truth — cannot grow.</p>
+      <p>And a person who only hears praise — never improves.</p>
+      <p><span class="hl">The most important skill in business is the strength to handle truth.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>The third real reason — <span class="hl">planning instead of acting.</span></p>
+      <p>Many entrepreneurs keep making plans.</p>
+      <p>They build spreadsheets.</p>
+      <p>They create presentations.</p>
+      <p>They spend all their time perfecting everything.</p>
+      <p>And the actual work — never begins.</p>
+      <p>This is a form of fear.</p>
+      <p>As long as you're planning — the fear of failure doesn't exist.</p>
+      <p>But once the work starts — the possibility of failing starts too.</p>
+      <p>And that fear — keeps them locked inside the world of planning.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Remember one truth.</p>
+      <p>No plan survives the first meeting with a real customer.</p>
+      <p>Reality is always different from the plan.</p>
+      <p>So start early.</p>
+      <p>Fail early.</p>
+      <p><span class="hl">Learn early.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>The fourth real reason — <span class="hl">arrogance.</span></p>
+      <p>When an entrepreneur moves a little ahead — they start believing they know everything.</p>
+      <p>They stop listening.</p>
+      <p>They ignore their mentor.</p>
+      <p>They don't hear the customer.</p>
+      <p>They dismiss the team.</p>
+      <p>And slowly — they become alone.</p>
+      <p>And a person who is alone — no matter how smart — can only go so far.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Every great person in the world shares one common habit.</p>
+      <p>They are always learning.</p>
+      <p>They never think — "I know everything."</p>
+      <p><span class="hl">The day someone thinks that — their growth stops that very day.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>The fifth real reason — <span class="hl">focus on the wrong things.</span></p>
+      <p>Many entrepreneurs spend time perfecting their logo.</p>
+      <p>They debate website colors.</p>
+      <p>They design business cards.</p>
+      <p>But they never have a single real conversation with a customer.</p>
+      <p>These are all visible things.</p>
+      <p>Real business doesn't live in the visible — it lives in the doing.</p>
+      <p><span class="hl">Until someone pays for your product — your business hasn't started yet.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>The sixth and deepest reason — <span class="hl">lying to yourself.</span></p>
+      <p>This is the hardest one.</p>
+      <p>The entrepreneur tells themselves — "I'm fine."</p>
+      <p>While they are exhausted.</p>
+      <p>They tell themselves — "Business is going well."</p>
+      <p>While the numbers say something else entirely.</p>
+      <p>They tell themselves — "Next month everything will be fine."</p>
+      <p>But next month passes the same way.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Lying to yourself is the most comfortable thing in the world.</p>
+      <p>And the most dangerous.</p>
+      <p>Because until you see the truth — you cannot change anything.</p>
+      <p><span class="hl">And what doesn't change — sinks.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>So how do you protect yourself from all of this?</p>
+      <p><strong>First</strong> — every week, ask yourself one honest question: <span class="hl">"Am I doing what is necessary — or what is easy?"</span> That one question will tell you everything.</p>
+      <p><strong>Second</strong> — find one person who will tell you the truth. Plenty of people will praise you. One truth-teller is enough. Keep that person close. Listen to them — no matter how bitter it feels.</p>
+      <p><strong>Third</strong> — plan less, do more. Do one small thing today. One more tomorrow. One step every day. The perfect plan never arrives. But one step every day — eventually gets you there.</p>
+      <p><strong>Fourth</strong> — trust the numbers. If no one is buying, something is wrong. Find that thing. Accept it. Fix it. Numbers don't lie. <span class="hl">We lie.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>And one last thing.</p>
+      <p>Failing is not a bad thing.</p>
+      <p>But failing without learning — is the greatest waste of a life.</p>
+      <p>Every fall is a lesson.</p>
+      <p>But the lesson only comes — when you fall with your eyes open.</p>
+      <div class="brk">· · ·</div>
+
+      <p>The greatest entrepreneurs are not those who never fell.</p>
+      <p>The greatest entrepreneurs are those who — after every fall — asked themselves one question.</p>
+      <p><span class="hl">"What did I do wrong here?"</span></p>
+      <p>That one question is what sets them apart from everyone else.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Business is not built from the outside.</p>
+      <p>Business is built from within.</p>
+      <p>The day you truly know yourself.</p>
+      <p>The day you make peace with your weaknesses.</p>
+      <p>That day — no market, no competition, no hardship can stop you.</p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">Win yourself first.</span></p>
+      <p><span class="hl">Business is won after that.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 4,
+    title: "Thinking, Fast and Slow — What Your Brain Does Without Telling You",
+    category: "psychology",
+    date: "Apr 17, 2026",
+    readTime: "10 min read",
+    likes: 0,
+    excerpt: "A man went to the market. He saw a sign. He didn't think. He just bought it. Later he realised — he didn't even need it. Daniel Kahneman spent a lifetime answering why.",
+    thumbnail: "",
+    content: `
+      <p>A man went to the market.</p>
+      <p>He saw a sign at a shop — "Today only, 500 rupees."</p>
+      <p>He didn't think.</p>
+      <p>He just bought it.</p>
+      <p>Back home, he realised — he didn't even need that thing.</p>
+      <p>He asked himself — "Why did I buy this?"</p>
+      <p>He had no answer.</p>
+      <p>This is the exact question Daniel Kahneman spent his entire life answering.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Kahneman was a scientist.</p>
+      <p>He noticed something strange.</p>
+      <p>Humans don't always make decisions after careful thought.</p>
+      <p>Most decisions happen without thinking at all.</p>
+      <p>And he explained this in his book — <span class="hl">"Thinking, Fast and Slow."</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>Kahneman says — the human mind operates with two kinds of thinking.</p>
+      <p>He called one — <span class="hl">System 1.</span></p>
+      <p>The other — <span class="hl">System 2.</span></p>
+      <p>Both are working inside you at every moment.</p>
+      <p>You just don't know it.</p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>What is System 1?</strong></p>
+      <p>System 1 is the thinking that happens instantly.</p>
+      <p>If someone shouts at you — you feel fear.</p>
+      <p>You didn't think. It just happened.</p>
+      <p>If someone steps in front of your car — you hit the brakes.</p>
+      <p>You didn't calculate. Your brain did it by itself.</p>
+      <p>System 1 is fast.</p>
+      <p>System 1 is automatic.</p>
+      <p><span class="hl">System 1 never switches off.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>What is System 2?</strong></p>
+      <p>System 2 is the thinking that takes effort.</p>
+      <p>If someone asks you — "What is 37 times 48?"</p>
+      <p>You pause.</p>
+      <p>You think.</p>
+      <p>You calculate.</p>
+      <p>That is System 2.</p>
+      <p>System 2 is slow.</p>
+      <p>System 2 is draining.</p>
+      <p><span class="hl">So the brain tries to use it as little as possible.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>And this is where all the trouble begins.</p>
+      <p>The brain is lazy.</p>
+      <p>It always chooses the easier path.</p>
+      <p>Whenever a decision needs to be made — the brain sends System 1.</p>
+      <p>System 1 gives a quick answer.</p>
+      <p>And we think — "I made a thoughtful decision."</p>
+      <p>But in reality — we made the decision without thinking at all.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Kahneman gave people a puzzle:</p>
+      <p><span class="hl">"A bat and a ball together cost ₹1.10. The bat costs ₹1 more than the ball. What does the ball cost?"</span></p>
+      <p>Most people instantly said — "10 paise."</p>
+      <p>But that's wrong.</p>
+      <p>The correct answer is 5 paise.</p>
+      <p>System 1 jumped in with a quick answer.</p>
+      <p>System 2 never got a chance.</p>
+      <div class="brk">· · ·</div>
+
+      <p>This happens in our lives all the time.</p>
+      <p>We form opinions quickly.</p>
+      <p>We judge people quickly.</p>
+      <p>We make decisions quickly.</p>
+      <p>And then we regret them.</p>
+      <p><span class="hl">Because System 1 did the work — not System 2.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>Kahneman discovered another deep concept — <span class="hl">"Anchoring."</span></p>
+      <p>The first number or piece of information you receive gets lodged in your mind.</p>
+      <p>And then you compare everything against it.</p>
+      <p>A shopkeeper writes — "Was ₹2,000. Now only ₹800."</p>
+      <p>You think — "What a deal."</p>
+      <p>But you never asked — "Is this thing even worth ₹800?"</p>
+      <p>The ₹2,000 anchor settled into your brain.</p>
+      <p><span class="hl">And you bought it without thinking.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>Then there is — <span class="hl">"Loss Aversion."</span></p>
+      <p>Kahneman found that the pain of losing ₹100 is twice as powerful as the joy of gaining ₹100.</p>
+      <p>The fear of losing is far greater than the excitement of winning.</p>
+      <p>This is why people don't take risks.</p>
+      <p>This is why people don't quit a job they hate.</p>
+      <p>This is why people don't start something new.</p>
+      <p>They keep thinking — "What if it doesn't work? What if I lose everything?"</p>
+      <p><span class="hl">And so they stay exactly where they are.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>Is this wrong?</p>
+      <p>No.</p>
+      <p>It is the architecture of the human mind.</p>
+      <p>Millions of years ago — when humans lived in the wild — losing meant dying.</p>
+      <p>So the brain learned to avoid loss at all costs.</p>
+      <p>That instinct is still here.</p>
+      <p>But life has changed.</p>
+      <p><span class="hl">And that old instinct now holds us back.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>Kahneman also explained — <span class="hl">"The Halo Effect."</span></p>
+      <p>If someone looks good — we assume they are good.</p>
+      <p>If someone speaks confidently — we assume they are right.</p>
+      <p>We see one thing.</p>
+      <p>And we assume everything else.</p>
+      <p>This is why people trust dishonest leaders.</p>
+      <p>This is why people fall for charismatic fraudsters.</p>
+      <p>System 1 said — "This person seems great."</p>
+      <p><span class="hl">System 2 was never called.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>So what is the real lesson of Kahneman's book?</p>
+      <p>The lesson is not that System 1 is bad.</p>
+      <p>System 1 is necessary.</p>
+      <p>If you applied System 2 to everything — life would stop.</p>
+      <p>The lesson is — when the decision is important, pause.</p>
+      <p>When you're about to buy something, judge someone, or make a major choice —</p>
+      <p>Stop System 1.</p>
+      <p>Call System 2.</p>
+      <p><span class="hl">Think.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>Kahneman says — <span class="hl">"Slow down."</span></p>
+      <p>Two words. The entire book in two words.</p>
+      <p>Decisions made in haste are usually wrong.</p>
+      <p>And wrong decisions take life in a direction you never wanted.</p>
+      <div class="brk">· · ·</div>
+
+      <p>What can you do practically?</p>
+      <p>Before any big decision — sleep on it one night.</p>
+      <p>Before buying anything — ask: "Do I actually need this?"</p>
+      <p>When someone pressures you to decide quickly — that urgency is a warning sign.</p>
+      <p>When your first impression of someone forms — don't treat it as final.</p>
+      <p><span class="hl">These small habits wake System 2 up.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>Kahneman said something that cuts deep.</p>
+      <p><span class="hl">"We think we are rational. But we are not rational. We are only pretending to be rational."</span></p>
+      <p>That sounds harsh.</p>
+      <p>But it is the truth.</p>
+      <p>And the person who accepts this truth — becomes wiser than everyone else.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Because the person who knows they can be wrong — keeps thinking.</p>
+      <p>And the person who keeps thinking — makes fewer mistakes.</p>
+      <div class="brk">· · ·</div>
+
+      <p>The mind is a remarkable thing.</p>
+      <p>But understanding the mind — is even more remarkable.</p>
+      <p>Kahneman gave us a mirror in which we can see ourselves as we truly are.</p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">To see clearly — you must slow down.</span></p>
+      <p><span class="hl">To think clearly — you must let go of speed.</span></p>
+      <p><span class="hl">And to live well — you must know yourself.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 5,
+    title: "The Psychology Behind Every Advertisement",
+    category: "psychology",
+    date: "Apr 17, 2026",
+    readTime: "10 min read",
+    likes: 0,
+    excerpt: "You wake up. You scroll. You see an ad. You forget it. That evening — you buy exactly that thing. You didn't remember the ad. But your brain did. It was working quietly the whole time.",
+    thumbnail: "",
+    content: `
+      <p>You wake up in the morning.</p>
+      <p>You check your phone.</p>
+      <p>An ad appears.</p>
+      <p>You scroll past it.</p>
+      <p>That evening, you go to a shop.</p>
+      <p>And you buy that exact thing.</p>
+      <p>You don't even remember seeing that ad in the morning.</p>
+      <p>But your brain remembered.</p>
+      <p>Your brain worked quietly.</p>
+      <p>And you thought — "I decided this myself."</p>
+      <p><span class="hl">No. Someone else decided for you.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>Advertising is not an art.</p>
+      <p>Advertising is a science.</p>
+      <p>And that science works on the vulnerabilities of your mind.</p>
+      <p>Behind every ad is the thinking of a psychologist.</p>
+      <p>Every colour, every word, every face — placed with intention.</p>
+      <p>Today, we decode that thinking.</p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique one — Repetition.</strong></p>
+      <p>When a name is heard again and again — the brain starts to treat it as truth.</p>
+      <p>This is a basic rule of psychology.</p>
+      <p>It is called — <span class="hl">"The Illusory Truth Effect."</span></p>
+      <p>Even a lie — if repeated enough times — starts to feel true.</p>
+      <p>This is why the same ad is shown to you over and over.</p>
+      <p>You think — "This is annoying."</p>
+      <p>But your brain thinks — "This feels familiar."</p>
+      <p>And familiar feels safe.</p>
+      <p><span class="hl">And what feels safe — we buy.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique two — Fear.</strong></p>
+      <p>An ad appears.</p>
+      <p>A man lies ill in bed.</p>
+      <p>His children are crying.</p>
+      <p>Then it shows — he had no insurance.</p>
+      <p>And in the next second — an insurance company's name.</p>
+      <p>A fear settles in your mind.</p>
+      <p>"What if this happens to me?"</p>
+      <p>And that fear drives you to act.</p>
+      <p>Advertisers know — fear works faster than happiness.</p>
+      <p>So they sell fear.</p>
+      <p><span class="hl">And along with it — a solution.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique three — Social Proof.</strong></p>
+      <p>"10 lakh people have already used this."</p>
+      <p>"India's number 1 brand."</p>
+      <p>"Doctors' first choice."</p>
+      <p>What do you think when you read these lines?</p>
+      <p>"If so many people bought it — it must be good."</p>
+      <p>That is the psychology.</p>
+      <p>Humans are social animals.</p>
+      <p>They do what others around them are doing.</p>
+      <p>They feel safe in the crowd.</p>
+      <p><span class="hl">And advertisers exploit this instinct completely.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique four — Scarcity.</strong></p>
+      <p>"Only 2 left."</p>
+      <p>"Offer ends tonight."</p>
+      <p>"Limited edition."</p>
+      <p>The moment you read these — something happens inside the brain.</p>
+      <p>A rush. An anxiety.</p>
+      <p>"If I don't get it now — it'll be gone."</p>
+      <p>Psychology calls this — <span class="hl">FOMO. Fear of Missing Out.</span></p>
+      <p>What is scarce feels more desirable.</p>
+      <p>What is easily available — no one values.</p>
+      <p>Advertisers make things appear scarce — so you want them more.</p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique five — Aspirational Identity.</strong></p>
+      <p>A perfume ad appears.</p>
+      <p>A handsome man. An expensive car. A breathtaking location.</p>
+      <p>He applies that perfume.</p>
+      <p>The ad says nothing about what's in the perfume.</p>
+      <p>No ingredients. No quality claims.</p>
+      <p>Just a feeling.</p>
+      <p>"Wear this — and you could become that."</p>
+      <p>You are not buying a perfume.</p>
+      <p><span class="hl">You are buying the life you want to live.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>This is advertising's greatest power.</p>
+      <p>It doesn't sell a product.</p>
+      <p>It sells an identity.</p>
+      <p>It sells a dream.</p>
+      <p>And humans have always bought dreams.</p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique six — Anchoring.</strong></p>
+      <p>A phone costs ₹1,20,000.</p>
+      <p>Next to it — another phone for ₹80,000.</p>
+      <p>You think — "The ₹80,000 one is affordable."</p>
+      <p>But is ₹80,000 actually cheap?</p>
+      <p>No.</p>
+      <p>But the ₹1,20,000 anchor made it look that way.</p>
+      <p>Advertisers always show the expensive option first.</p>
+      <p>So the next option looks reasonable.</p>
+      <p><span class="hl">And you happily buy the "cheaper" one.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique seven — Storytelling.</strong></p>
+      <p>Show only the product — people forget.</p>
+      <p>Show a story — people remember.</p>
+      <p>Why?</p>
+      <p>Because the brain thinks in stories.</p>
+      <p>Facts enter the brain.</p>
+      <p>But stories enter the heart.</p>
+      <p><span class="hl">And buying happens from the heart — not the brain.</span></p>
+      <p>This is why every great company tells a story.</p>
+      <p>Their history. Their founder's struggle. Their mission.</p>
+      <p>So you connect with them.</p>
+      <p>And connection builds loyalty.</p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique eight — Colour Psychology.</strong></p>
+      <p>You see red — your heart beats faster.</p>
+      <p>You see blue — you feel calm.</p>
+      <p>You see yellow — you feel cheerful.</p>
+      <p>None of this is coincidence.</p>
+      <p>Every brand chooses its colour deliberately.</p>
+      <p>Fast food restaurants use red and yellow — because they increase appetite and make you want to leave quickly.</p>
+      <p>Banks use blue — because blue signals trust.</p>
+      <p>Health brands use green — because green feels natural.</p>
+      <p>You think — it's just a colour.</p>
+      <p>But that colour changes how you feel.</p>
+      <p><span class="hl">And how you feel changes what you decide.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique nine — The Power of "Free."</strong></p>
+      <p>"Free gift with purchase."</p>
+      <p>"Buy one get one free."</p>
+      <p>"Free delivery."</p>
+      <p>The moment the word "free" appears — something ignites in the brain.</p>
+      <p>A rush of joy. A spark of excitement.</p>
+      <p>Even if you have no use for the free thing.</p>
+      <p>Psychologists have found — the word "free" disables rational thinking.</p>
+      <p>You stop thinking. You just want to take.</p>
+      <p><span class="hl">And advertisers wait patiently for that exact moment.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p><strong>Technique ten — The Familiar Face.</strong></p>
+      <p>A famous actor is in the ad.</p>
+      <p>He applies a cream.</p>
+      <p>He smiles.</p>
+      <p>You like that actor.</p>
+      <p>So you start to like that cream.</p>
+      <p>This is Celebrity Endorsement.</p>
+      <p>But the psychology runs deeper.</p>
+      <p>When a familiar face says something — the brain trusts it more.</p>
+      <p>The face is familiar — so the words feel true.</p>
+      <p><span class="hl">Even if that actor knows nothing about the cream.</span></p>
+      <div class="brk">· · ·</div>
+
+      <p>So can we escape all of this?</p>
+      <p>Completely — no.</p>
+      <p>Because these techniques work on the architecture of the human brain.</p>
+      <p>And brain architecture doesn't change.</p>
+      <p>But we can become aware.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Whenever you see an ad — ask one question.</p>
+      <p><span class="hl">"What do they want me to feel?"</span></p>
+      <p>Fear? Joy? Incompleteness? FOMO?</p>
+      <p>Once you name the feeling — it loses its grip on you.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Whenever you want to buy something — wait one day.</p>
+      <p>If you still want it the next day — it's a need.</p>
+      <p>If you've forgotten about it — it was an ad, not a need.</p>
+      <div class="brk">· · ·</div>
+
+      <p>Advertising is not evil.</p>
+      <p>Advertising has introduced us to many things we genuinely needed.</p>
+      <p>But advertising should not be blind.</p>
+      <p>When you understand that someone is playing with your mind —</p>
+      <p>You don't get caught in that game.</p>
+      <div class="brk">· · ·</div>
+
+      <p>There are two kinds of people in the world.</p>
+      <p>Those who see ads and react.</p>
+      <p>And those who see ads and understand.</p>
+      <p>The first kind buy what they are told to.</p>
+      <p><span class="hl">The second kind buy what they actually need.</span></p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">Every ad is a door.</span></p>
+      <p><span class="hl">But whether to open it or not — is in your hands.</span></p>
+      <p><span class="hl">You just need to learn to recognise the door.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 6,
+    title: "Why Storytelling Sells More Than Facts",
+    category: "marketing",
+    date: "Apr 17, 2026",
+    readTime: "9 min read",
+    likes: 0,
+    excerpt: "Two doctors. Same message. One spoke in statistics — the other told a story. One reached the mind. The other reached the heart. And life-changing decisions are always made from the heart.",
+    thumbnail: "",
+    content: `
+      <p>There were two doctors.</p>
+      <p>The first doctor said —</p>
+      <p><span class="hl">"Smoking deposits tar in the lungs. Every cigarette takes 11 minutes off your life. In one year, the average smoker smokes 3,000 cigarettes."</span></p>
+      <p>The second doctor said —</p>
+      <p>"I had a patient. He was 35 years old. A cheerful man. He had a young daughter. Every night, before she fell asleep, he told her a story."</p>
+      <p>"One day he came to me. There was cancer in his lungs. The last time I saw him was in the hospital. He was crying. His daughter was standing outside. And he couldn't even hold her."</p>
+      <div class="brk">· · ·</div>
+      <p>The first doctor's words entered the mind. The second doctor's words entered the heart.</p>
+      <p><span class="hl">And life-changing decisions are made from the heart.</span></p>
+      <div class="brk">· · ·</div>
+      <p>That is the difference — between facts and a story. Facts tell. Stories make you feel. And humans don't do what they know. <span class="hl">Humans do what they feel.</span></p>
+      <div class="brk">· · ·</div>
+      <p>An experiment took place at a university. Students were told about a charity in two ways. The first group heard — "30 million children in Africa are starving. Every year, 10 million children die from malnutrition." The second group heard — "There is a 7-year-old girl named Mali. Every morning she wakes up not knowing if she will eat today. Her eyes are wide. Her dreams are even wider."</p>
+      <p>The second group donated — twice as much. The number 30 million did not move them. <span class="hl">The story of one Mali did.</span></p>
+      <div class="brk">· · ·</div>
+      <p>Psychologists call this the <span class="hl">"Identifiable Victim Effect."</span> When there is one person — a name, a face, a story — we connect. When there is a number — the mind calculates. When there is a person — the heart feels. And feeling is what drives action.</p>
+      <div class="brk">· · ·</div>
+      <p>Why is storytelling so powerful? When you hear a fact — only one part of the brain activates. But when you hear a story — multiple parts light up simultaneously. If the story mentions food — the taste centre activates. If it mentions running — the movement centre activates. <span class="hl">While listening to a story, the brain feels as if it is inside the story itself.</span> And what the brain lives through — it never forgets.</p>
+      <div class="brk">· · ·</div>
+      <p>That is why we forget facts — but stories stay with us for years. Do you remember a history date from school? Probably not. But a story your grandmother told you? You certainly do. Because the date was a fact. The story was an experience.</p>
+      <div class="brk">· · ·</div>
+      <p>In business, storytelling doesn't mean making up false stories. It means telling your truth in a way that reaches someone's heart. A soap company could say — "Our soap has 5 natural ingredients." Or it could say — "There was a mother whose newborn's skin was so sensitive that every soap caused a rash. Then she tried ours. For the first time — her baby felt no discomfort. For the first time — that mother slept in peace."</p>
+      <p><span class="hl">Which one touched you more?</span></p>
+      <div class="brk">· · ·</div>
+      <p>Every good story needs four things. A real person. A struggle. A transformation. And a truth that makes the listener think: "Yes, that's exactly how it is."</p>
+      <div class="brk">· · ·</div>
+      <p>One crucial rule — in your story, the hero is not you. The hero is your customer. When they see themselves in the story — they take action.</p>
+      <div class="brk">· · ·</div>
+      <p>Numbers go to the mind. Facts go to the mind. But a great story — passes through the mind and lands straight in the heart.</p>
+      <p><span class="hl">And what settles in the heart — never leaves.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 7,
+    title: "The Secret Behind Viral Marketing",
+    category: "marketing",
+    date: "Apr 17, 2026",
+    readTime: "8 min read",
+    likes: 0,
+    excerpt: "In 2012, a video appeared. No big actor. No big budget. Just one man, 90 seconds, and a simple honest message. Within 48 hours — over 10 million views. This is what viral actually means.",
+    thumbnail: "",
+    content: `
+      <p>In 2012, a video appeared. No big actor. No big budget. No TV channel. Just one man — the founder of Dollar Shave Club.</p>
+      <p>In 90 seconds he said one thing — "Our blades are excellent. And they cost just one dollar." But he said it in such a funny, real way that within 48 hours over 10 million people had watched it. The company received 12,000 orders that very day.</p>
+      <p>One video. One man. One honest message. <span class="hl">And an empire was born.</span></p>
+      <div class="brk">· · ·</div>
+      <p>People think viral marketing is luck. People think viral means a miracle happened. People think it requires huge budgets. All of this is wrong. <span class="hl">Behind viral marketing is a very clear psychology.</span></p>
+      <div class="brk">· · ·</div>
+      <p>Viral means — when one person sends something to another, that person to a third, and this chain keeps going on its own without anyone asking. When people voluntarily pass it forward — something goes viral.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The first reason — Emotion.</strong> People share things that make them feel something. Research shows high-arousal emotions go viral — overwhelming laughter, surprise, anger, or inspiration. Something that just feels "nice" doesn't get shared. <span class="hl">Viral content moves hearts.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>The second reason — Social Currency.</strong> Every person wants others to see them as smart or interesting. When someone shares content — they're sharing their image. Content that makes people look smart goes viral. Content that embarrasses people does not.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The third reason — Practical Value.</strong> People share what is useful to others. When you tell someone something useful — you become valuable in their eyes. And humans naturally want to be valuable. <span class="hl">So useful content gets shared.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>The fourth reason — Triggers.</strong> A trigger is when one thing reminds you of something else. One brand tied its marketing to "Monday." Every Monday — people started thinking about that brand. The brand spent nothing. Monday did the marketing for them.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The fifth reason — Stories.</strong> Viral content is often a story — a struggle, a person, a transformation. When the story is relatable — people say "This is exactly my life." And what feels like yours — you share.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The sixth reason — Surprise.</strong> The brain always looks for something new. When something is unexpected — the brain wakes up. Surprise grabs attention. And what grabs attention — gets shared.</p>
+      <div class="brk">· · ·</div>
+      <p>One important truth — going viral should not be the goal. It is a result. People who make content "to go viral" usually fail. People who make content "to speak the truth" usually go viral.</p>
+      <div class="brk">· · ·</div>
+      <p>The biggest secret of viral marketing — be real. Today the world is full of filters, edited videos, and perfect lives. Whoever is even slightly real stands out. And what stands out — is remembered. And what is remembered — is shared.</p>
+      <div class="brk">· · ·</div>
+      <p>Practically: choose one emotion, tell your real story, and speak to one specific person. When one person feels "This is my story" — they share it with thousands. And thousands become hundreds of thousands.</p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">Fire spreads on its own — as long as the spark is genuine.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 8,
+    title: "Why Trust Sells More Than Quality",
+    category: "business",
+    date: "Apr 17, 2026",
+    readTime: "8 min read",
+    likes: 0,
+    excerpt: "Two shops. The first had the best products — but the owner was never around. The second was ordinary — but he knew every customer by name. Five years later, only one shop was still open.",
+    thumbnail: "",
+    content: `
+      <p>There were two shops. The first had the finest products — premium and genuine. But the shopkeeper was never around, never talked, made promises and forgot them. The second wasn't as premium. But the shopkeeper knew every customer by name. When there was a problem — he came running. When a mistake was made — he admitted it without excuses.</p>
+      <p>Five years later — the first shop had closed. The second was famous across the entire city.</p>
+      <p>The first had better quality. The second had more trust. <span class="hl">And in the marketplace — trust won.</span></p>
+      <div class="brk">· · ·</div>
+      <p>We think — whoever makes the best product will win. But history says — whoever people trusted — won. Ask yourself: the toothpaste in your home — did you research whether a better one exists? No. You buy what you've always bought. Because you trust it. Quality wasn't compared. <span class="hl">Trust made the decision automatically.</span></p>
+      <div class="brk">· · ·</div>
+      <p>Psychology calls this <span class="hl">"Cognitive Ease."</span> The brain always chooses the easier path. When a brand is familiar — the brain doesn't have to think. It goes there automatically. But when there is no trust — the brain must think, compare, and doubt every time. And in doubt — people often don't buy at all.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>How is trust built?</strong></p>
+      <p><strong>Consistency</strong> — the person who always does what they say, again and again, slowly builds trust. Trust is built from being proven right a hundred times over.</p>
+      <p><strong>Vulnerability</strong> — when someone admits a mistake, when someone says "We were wrong," people trust them more. Someone who claims to be perfect seems dishonest. Someone who admits weakness seems genuine.</p>
+      <p>The car rental company Avis once ran an ad saying — "We're number 2. So we try harder." They admitted they weren't the biggest. People thought — these people are honest. That same year — Avis turned a profit for the first time. <span class="hl">Weakness built trust. Trust transformed the business.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>Give before you take.</strong> The one who gives first — is trusted more. Psychology calls this <span class="hl">"Reciprocity."</span> Humans naturally want to give back. Smart businesses give value first — and ask later.</p>
+      <p><strong>Social Proof</strong> — one good review is more powerful than a thousand ads. An ad is the company speaking. A review is a real person speaking. And a real person's words are trusted more.</p>
+      <p><strong>Transparency</strong> — share your pricing, your process, your mistakes, your limitations. When someone is this open — people think: "They're not hiding anything. They are honest."</p>
+      <div class="brk">· · ·</div>
+      <p>One deep insight. Quality — you create. Trust — others give you. No matter how good your quality — if others haven't given their trust — quality is worthless. But once trust is given — even slightly lower quality works fine.</p>
+      <div class="brk">· · ·</div>
+      <p>And remember — trust also breaks. One lie. One betrayal. One broken promise. Years of work destroyed in one moment. Building trust takes years. Breaking it takes one second. <span class="hl">Whatever you do — protect trust. It is your greatest asset.</span></p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">Quality gives you customers. Trust gives you loyal customers. Quality can be copied. Trust cannot.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 9,
+    title: "The Comfort Zone Is Destroying Your Future",
+    category: "motivation",
+    date: "Apr 17, 2026",
+    readTime: "8 min read",
+    likes: 0,
+    excerpt: "A bird lived in a cage. One day someone opened the door. Outside was open sky, green trees, and freedom. The bird sat still — and never flew. That bird is you. That cage is your comfort zone.",
+    thumbnail: "",
+    content: `
+      <p>There was a bird. It lived in a cage. One day — someone opened the door. Outside was open sky. Outside were green trees. Outside was freedom. But the bird stayed in the cage. It didn't fly. Because the cage was familiar. Outside was unknown. And the unknown — was frightening.</p>
+      <p><span class="hl">That bird is you. And that cage is your comfort zone.</span></p>
+      <div class="brk">· · ·</div>
+      <p>The comfort zone is not a place — it is a feeling. The feeling that says "Everything is fine here. I am safe." This feeling is pleasant. But this feeling — slowly hollows you out.</p>
+      <div class="brk">· · ·</div>
+      <p>One truth: in the comfort zone there is no pain — but no growth either. Pain and growth come together. Where there is no pain — there is no growth. And where there is no growth — life slowly begins to shrink.</p>
+      <div class="brk">· · ·</div>
+      <p>Psychology calls this <span class="hl">"Homeostasis."</span> The brain always wants balance. Whenever something new comes — the brain panics and says: "Go back. This isn't right." This was the brain's protection mechanism millions of years ago. But today — something new is exactly what can change your life. And that same brain — holds you back.</p>
+      <div class="brk">· · ·</div>
+      <p>Observe this: the person who is always comfortable — five years later they are exactly where they were five years ago. Same job. Same salary. Same thinking. Time changed. The world changed. But they didn't. Because change is uncomfortable. And from uncomfortable things — they always ran away.</p>
+      <div class="brk">· · ·</div>
+      <p>The greatest lie of the comfort zone is — "Not now, later." "Let me get more ready — then I'll do it." But the right time never comes. Because waiting for the right time — is itself a comfort zone. You will never be completely ready. Nobody ever is. Those who did great things — they were scared too. The difference was just this — <span class="hl">they took the step despite the fear.</span></p>
+      <div class="brk">· · ·</div>
+      <p>A philosopher once said — "A ship is safe in harbour. But ships aren't built for harbours." You are safe at home. Safe in your routine. But you weren't built for this safety. There is something inside you that wants to fly. But the comfort zone — keeps it suppressed.</p>
+      <div class="brk">· · ·</div>
+      <p>Here's the dangerous truth: the comfort zone doesn't slowly expand — it slowly shrinks. The more comfortable you stay — the more uncomfortable things frighten you. First, going to a new place was uncomfortable. Then meeting new people. Then trying a new idea. Then even getting up in the morning. The comfort zone keeps shrinking. And you shrink with it.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>So what do you do?</strong></p>
+      <p><strong>First</strong> — do one small uncomfortable thing every day. Talk to a stranger. Try something new. One small step every day breaks down the walls of the comfort zone.</p>
+      <p><strong>Second</strong> — write down your fear. Ask "What's the worst that could happen?" Most of the time — even the worst isn't as bad as your mind made it. <span class="hl">Fear is small in reality. Big in the mind.</span></p>
+      <p><strong>Third</strong> — meet someone doing what you want to do. Seeing them, you'll think: "This is possible. They're just a person too."</p>
+      <p><strong>Fourth</strong> — celebrate small wins. Whenever you step outside the comfort zone — give yourself credit. "I tried. I went. I defeated fear." This builds the courage to go further.</p>
+      <div class="brk">· · ·</div>
+      <p>The price of staying comfortable — you don't feel it today. You feel it ten years later when you look back and think — "If only I had started that then." <span class="hl">"If only."</span> These are the heaviest words in any language. And the comfort zone — gives birth to them.</p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">The cage door is still open. The question is not what is outside. The question is — do you want to fly or not?</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 10,
+    title: "The Psychology of Self-Discipline",
+    category: "productivity",
+    date: "Apr 17, 2026",
+    readTime: "9 min read",
+    likes: 0,
+    excerpt: "Every night he made a perfect plan. Every morning the alarm rang and he hit snooze. The gym went unvisited. The project stayed closed. The 'tomorrow' that would fix everything — never came.",
+    thumbnail: "",
+    content: `
+      <p>There was a man. Every night before sleep he made a plan for the next day. "Tomorrow I'll wake up at 5. Go to the gym. Start that project." The plan felt great. At night. In the morning — alarm, snooze, back to sleep. Gym unvisited. Project unopened. In the evening — another plan. "Tomorrow for sure." That tomorrow never came.</p>
+      <p><span class="hl">This is not the story of one man. It is the story of almost every person.</span></p>
+      <div class="brk">· · ·</div>
+      <p>We all know what we should do. But we don't do it. Between knowing and doing — there is a vast gap. And the name of that gap is — a lack of self-discipline.</p>
+      <div class="brk">· · ·</div>
+      <p>But first — the world has spread a great lie about self-discipline. That lie is: "Self-discipline means extraordinary willpower." "It means always being motivated." All of this is wrong. And this wrong thinking is exactly why people fail every time.</p>
+      <div class="brk">· · ·</div>
+      <p>Psychology says: <span class="hl">"Self-discipline is not willpower. Self-discipline is a system."</span> People who consistently do good work — they aren't more motivated. They also get tired, bored, and sometimes don't want to work. The difference: they work despite their feelings. They chose discipline.</p>
+      <div class="brk">· · ·</div>
+      <p>Willpower is like a muscle — the more you use it, the more it tires. In the morning willpower is high. At night it is low. That's why more wrong decisions happen at night. Relying on willpower is relying on an exhausted army. It works for a while. Then it loses.</p>
+      <div class="brk">· · ·</div>
+      <p>So work on your Environment — not your willpower. If you want to use your phone less at night: willpower approach — "I'll stop myself." Environment approach — "Put the phone in another room." Which works more? <span class="hl">Environment. Always.</span> Psychology calls this "Environment Design." Your environment shapes your behaviour more than you do.</p>
+      <div class="brk">· · ·</div>
+      <p>The most powerful tool of self-discipline is <strong>habit</strong>. When any task becomes a habit — it doesn't require willpower. It happens automatically. Like brushing your teeth. Do you get motivated for that? No. If going to the gym became the same kind of habit — you wouldn't need to convince yourself every day.</p>
+      <p>Psychology's formula for habits: <span class="hl">Cue — Routine — Reward.</span> And when building a habit — start very small. Not "I'll exercise an hour." But "I'll just put on my shoes." Once the shoes are on — you often go out anyway. Small start — big momentum. This is called <span class="hl">"The 2-Minute Rule."</span></p>
+      <div class="brk">· · ·</div>
+      <p>The deepest insight — start with <strong>Identity</strong>. Don't make goals — first decide who you are. "I am the kind of person who exercises every day." "I am the kind of person who keeps their promises." When identity changes — behaviour automatically changes. Because people always act in accordance with who they believe they are.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Self-Compassion</strong> is also essential. When you stray from your plan — don't say "I'm useless. Nothing will ever come from me." Research shows — people who are kind to themselves after a mistake bounce back faster. <span class="hl">Self-compassion is not weakness. It is the power to recover.</span> One day missed is an accident. Two days missed starts to become a new habit.</p>
+      <div class="brk">· · ·</div>
+      <p>Finally — find your Clarity. Many people can't maintain discipline because they don't know what they want. Find your "why." When the answer is deep and personal — discipline becomes easier.</p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">Self-discipline doesn't mean torturing yourself. Self-discipline means loving yourself — enough to do what is good for your future, not just what feels good right now.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 11,
+    title: "The Difference Between Rich and Wealthy",
+    category: "finance",
+    date: "Apr 17, 2026",
+    readTime: "9 min read",
+    likes: 0,
+    excerpt: "Big car. Big house. Designer clothes. From the outside — he had it all. But at the end of every month, his bank account was empty. He looked rich. He was drowning. Being rich and being wealthy are not the same thing.",
+    thumbnail: "",
+    content: `
+      <p>There was a man. Big car. Big house. Designer clothes. Dining out every weekend. A new vacation every year. People thought — "He's got it made." But he couldn't sleep at night. Because at the end of every month — nothing was left in his bank account. He was visibly rich. In reality — he was drowning.</p>
+      <div class="brk">· · ·</div>
+      <p>There was another man. Ordinary car. Ordinary house. People thought — "He's nothing special." But this man slept soundly at night. Because if he stopped working today — his money would last the next twenty years.</p>
+      <p>The first man was Rich. The second was Wealthy. And between them — there is a world of difference.</p>
+      <div class="brk">· · ·</div>
+      <p>Rich means big income, appearances, and fragility. Rich is built on income. When income stops — Rich stops too. Wealthy means your money works for you — even when you're not working. Wealthy means options and freedom. Wealth is built on assets that grow with time.</p>
+      <div class="brk">· · ·</div>
+      <p>One formula: a Rich person thinks — "How much can I earn?" A Wealthy person thinks — <span class="hl">"How much can my money earn?"</span> This one difference in thinking changes an entire life.</p>
+      <div class="brk">· · ·</div>
+      <p>Two friends. Same salary. The first bought a new car, new phone, bigger house. The second kept the old car, invested every month, saved consistently. Ten years later — the first's salary rose but so did expenses. He was in the same place. The second's investments grew. One day he quit his job. Because he didn't need it anymore. <span class="hl">The first is still working. The second is living life.</span></p>
+      <div class="brk">· · ·</div>
+      <p>The trap is called <span class="hl">"Lifestyle Inflation."</span> When income rises — expenses rise too. New salary — new phone. Promotion — new car. Bonus — new vacation. Money comes in. Money goes out. Account stays the same. Rich people fall into this trap. Wealthy people avoid it. Why? Because social media celebrates appearances — big cars, big houses — but doesn't show the debt, the anxiety, the sleepless nights.</p>
+      <div class="brk">· · ·</div>
+      <p>The path to Wealth requires four things. Understanding <strong>Assets vs Liabilities</strong> — an asset puts money in your pocket; a liability takes it out. Building systems so <strong>money works without you</strong>. Practising <strong>Patience</strong> — wealth is a slow, boring process but compounding rewards waiting. And spending in the right order: needs first, then investments, then wants — not the other way around.</p>
+      <div class="brk">· · ·</div>
+      <p>But the deepest truth — Real Wealth is freedom. The freedom to do what you want, when you want, with whom you want. If in the chase for money you lost your life — then even with money you are poor.</p>
+      <div class="brk">· · ·</div>
+      <p>Being Rich is a number. <span class="hl">Being Wealthy is a feeling — that tomorrow is taken care of, that I am living on my own terms, that money is my servant — not my master.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 12,
+    title: "How Rich People Think About Money",
+    category: "finance",
+    date: "Apr 17, 2026",
+    readTime: "10 min read",
+    likes: 0,
+    excerpt: "Two children. Same neighbourhood. Same school. Both given 100 rupees. The first bought ice cream. The second asked: if I lend this, what comes back? Thirty years later — two completely different lives.",
+    thumbnail: "",
+    content: `
+      <p>Two children. Same neighbourhood. Same school. Both given 100 rupees. The first immediately bought ice cream — happy, money gone. The second thought: "If I lend these 100 rupees and get 10 back every week — in ten weeks I'll have 100 rupees again, and still have the 100." The first child ate the money. The second put it to work. Thirty years later — two completely different lives. Because of one single thought.</p>
+      <div class="brk">· · ·</div>
+      <p>Rich people aren't born different. They don't have magic. They just think about money differently. And that thinking builds a different life. Today we decode that thinking.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>First — what money is.</strong> Most people think money is for spending. Rich people think money is a tool. A hammer drives nails. <span class="hl">Money makes more money.</span> For them, money is not an end — it's a means.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Second — the language of money.</strong> Poor and middle class say — "I can't afford this." Rich people ask — "How can I afford this?" The first sentence shuts the brain down. The second sentence <span class="hl">makes the brain search for solutions.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>Third — multiple income sources.</strong> Most people depend on one job, one salary. Rich people build multiple streams — a business, an investment, a property, a skill that pays royalties. One source is fragile. Multiple sources are strong.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Fourth — "Pay Yourself First."</strong> Most people spend first and save what's left — usually nothing. Rich people save and invest first, then spend what remains. When money comes in — give 20% to yourself into savings and investments. Run life on the remaining 80%.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Fifth — calculated risk.</strong> Most people fear risk. Rich people ask — "What's the worst that can happen? Can I recover from it?" They calculate risk — they don't run from it. <span class="hl">Those who don't run from risk — seize opportunity.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>Sixth — build systems, not just hours.</strong> Most people think — "Work more, earn more." Rich people build things that work without them — investments, businesses, royalties. In the first model, time is the limit. In the second, <span class="hl">there is no limit.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>Seventh — change your beliefs about money.</strong> From childhood we hear "money is the root of all evil" and "rich people are bad." These become unconscious beliefs that keep us away from money. Rich people believe: "Money is a tool." "With money I can help others." <span class="hl">Change beliefs — behaviour changes. Change behaviour — results change.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>Eighth — invest in learning.</strong> Rich people know real education is just beginning after school. Books, courses, mentors. The greatest return comes from investing in yourself — a skill no one can take from you.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Ninth — patience and compounding.</strong> Rich people get rich slowly. A tree takes years to bear fruit — but when it does, it comes in abundance. Most people uproot the tree in year one. Rich people wait. <span class="hl">And the reward for waiting is always great.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>Tenth — give generously.</strong> Those who give — receive more. Money is an energy. Energy that stops — rots. Energy that flows — grows. Giving is an investment whose return always comes.</p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">Rich people don't have a different bank balance. They have a different mindset. And the mind can be changed. Change your thinking — life will change on its own.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 13,
+    title: "Why Discipline Beats Motivation",
+    category: "productivity",
+    date: "Apr 17, 2026",
+    readTime: "8 min read",
+    likes: 0,
+    excerpt: "Three months before the world championship. That day he had no desire. Rain outside. Body tired. Bed too comfortable. He put on his shoes anyway — and went. That day only one thing was there: discipline.",
+    thumbnail: "",
+    content: `
+      <p>There was an athlete. Three months before the world championship. That day he had no desire. Rain outside. Body tired. The bed was very comfortable. He still got up and put on his shoes. He went to the training ground. He completed that session. That day — no motivation, no passion — only one thing. Discipline. <span class="hl">And that discipline made him a champion.</span></p>
+      <div class="brk">· · ·</div>
+      <p>We all talk about motivation. "If I get motivated — I'll start." We wait for motivation like it's a bus that will arrive and we'll climb on. But that bus — often never comes. And we keep waiting.</p>
+      <div class="brk">· · ·</div>
+      <p>Motivation is a feeling. And feelings come and go. Today excited. Tomorrow tired. You have no control over feelings. And you don't depend on what you can't control.</p>
+      <div class="brk">· · ·</div>
+      <p>Research revealed: successful people aren't more motivated. They also get tired and bored. The difference — <span class="hl">they work despite their feelings. They chose discipline over waiting for motivation.</span></p>
+      <div class="brk">· · ·</div>
+      <p>Motivation pushes — "I feel good today, let's work." Discipline pulls — "Work has to be done regardless of how I feel." Push comes from outside. Pull comes from inside. And what comes from inside is more reliable.</p>
+      <div class="brk">· · ·</div>
+      <p>Take one example. You have to write a book. A motivated person writes when inspiration strikes. A disciplined person writes every single day — whether two pages or twenty. One year later: the motivated person has good paragraphs. The disciplined person has <span class="hl">a complete book.</span></p>
+      <div class="brk">· · ·</div>
+      <p>Psychology's key insight: <span class="hl">"Action precedes motivation."</span> We think motivation comes first — then we work. The truth is the reverse. Work first — motivation arrives on its own. When you do something, the brain releases rewards. Those rewards create the desire to do it again. Action created motivation — not the other way around.</p>
+      <div class="brk">· · ·</div>
+      <p>Another advantage: Motivation makes you start. <span class="hl">Discipline makes you finish.</span> The world is full of starters. Very few finishers. Whoever finishes — wins.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>How to build discipline:</strong></p>
+      <p><strong>One small promise</strong> — make it and don't break it. When you keep a small promise — trust in yourself builds. That trust slowly becomes discipline.</p>
+      <p><strong>Don't link discipline to feelings</strong> — "I don't feel like it" is not a valid reason. Discipline is linked to commitment, not feelings.</p>
+      <p><strong>Build systems</strong> — same wake time, same work time, same sequence. When routine is formed — discipline comes automatically.</p>
+      <p><strong>Identity</strong> — "I am a disciplined person." Say it daily. When you see yourself as disciplined — it becomes your identity. And going against identity is very hard.</p>
+      <p><strong>Accept being bored</strong> — discipline is boring. Same task every day. No drama. But <span class="hl">boring consistency always wins.</span></p>
+      <div class="brk">· · ·</div>
+      <p>Motivation makes you feel good. <span class="hl">Discipline makes you be good.</span> Feeling good is temporary. Being good is permanent.</p>
+      <div class="brk">· · ·</div>
+      <p>In every great person's story — discipline is mentioned far more than motivation. The days when there was no desire — but they still went. Those very moments are where their real story was written.</p>
+      <div class="brk">· · ·</div>
+      <p>Motivation is a spark. Spark starts a fire. But to keep the fire burning — you need wood. That wood is discipline. <span class="hl">Don't wait to feel ready. Just start. Every day. A little. Consistently. This is what changes a life.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 14,
+    title: "Why Most People Waste Their Time",
+    category: "productivity",
+    date: "Apr 17, 2026",
+    readTime: "9 min read",
+    likes: 0,
+    excerpt: "He woke up. Opened Instagram — half an hour gone. Then YouTube — another hour. Evening came and he felt he'd done nothing. But he'd been busy all day. Busy and productive are two very different things.",
+    thumbnail: "",
+    content: `
+      <p>A man woke up. Opened Instagram. Half an hour gone. Then YouTube. Another hour. Sat down to work — notification came. Phone picked up. Another half hour gone. Evening: exhausted but had accomplished nothing. He was busy all day. But he'd done nothing.</p>
+      <p>Being busy and being productive are two different things. <span class="hl">And this difference changes a life.</span></p>
+      <div class="brk">· · ·</div>
+      <p>Time is given to everyone equally — 24 hours to the rich and the poor, the successful and the struggling. Then why the difference? Because not everyone uses it equally.</p>
+      <div class="brk">· · ·</div>
+      <p>What is time? Time is life. What time is gone — that life is gone. Money can come back. Time once lost — never comes back. As a philosopher said: "A person saves everything. But time — they give away freely. Even though time is what they have the least of."</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The first reason — lack of Clarity.</strong> When you don't know the destination — every road looks the same. YouTube and Instagram are easy roads. So we walk them.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The second reason — Instant Gratification.</strong> The brain wants pleasure now, not later. Watch a video — pleasure now. Learn a skill — pleasure months later. Psychology calls this <span class="hl">"Present Bias."</span> We value the present more than the future. And so we regret it ten years later.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The third reason — Distraction.</strong> Every app wants your time. Every notification wants your attention. The people who build these apps are the world's smartest — they designed them so you can't stop scrolling. <span class="hl">Your time is their income.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>The fourth reason — Fake Busyness.</strong> Urgent vs Important. Urgent means it has to be done now. Important means it is truly necessary. Most people keep doing urgent things. The important things — developing skills, taking care of health — never get done because they never feel urgent. <span class="hl">And so they're always left for later. Later never comes.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>The fifth reason — Decision Fatigue.</strong> The brain can make limited decisions per day. A tired brain always chooses the easiest path — scrolling, TV, nothing. That's why time is wasted most in the evenings.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The sixth reason — Fear.</strong> Many people waste time because they fear working. If they try and fail — then what? This fear stops them from starting. And when work doesn't start — time flows into entertainment as an escape from that fear.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>So what do you do?</strong></p>
+      <p><strong>Most Important Task</strong> — every night ask: "If I do one thing tomorrow that moves my life forward most — what is it?" Do that one thing first thing in the morning, before the phone.</p>
+      <p><strong>Time Blocks</strong> — "8 to 10: deep work only. 10 to 11: emails and calls." When time is blocked — no decisions needed, no time lost to dithering.</p>
+      <p><strong>Phone away</strong> — research shows that even when a phone is nearby but untouched, focus drops 20% just from its existence. <span class="hl">Phone away — focus returns.</span></p>
+      <p><strong>Learn to say No</strong> — not every invitation, meeting, or request needs a yes. The more "yes" — the less time. Saying no is respect for your own life.</p>
+      <p><strong>Evening review</strong> — five minutes: "What did I do today? Was it important? Where did time go that shouldn't have?" What is measured — improves.</p>
+      <div class="brk">· · ·</div>
+      <p>People who waste time aren't bad people — they just don't know about this trap. Once you know — you have a choice. And having a choice is the greatest power.</p>
+      <div class="brk">· · ·</div>
+      <p>Your life is made of your time. The time you give today — that's the life you'll have tomorrow.</p>
+      <p><span class="hl">Every morning you receive a gift — 24 hours, new and fresh. Open that gift. Use it carefully. Because that gift only comes once. Yesterday's never returns.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 15,
+    title: "Communication Is a Superpower",
+    category: "skills",
+    date: "Apr 17, 2026",
+    readTime: "9 min read",
+    likes: 0,
+    excerpt: "Two people. Equally smart. Equally hardworking. Equally good ideas. One couldn't say it — words got stuck. The other said the same thing clearly and confidently. One became the leader. Communication made the difference.",
+    thumbnail: "",
+    content: `
+      <p>Two people. Equally smart, hardworking, and idea-filled. The first had the best solution in every meeting — but words got stuck, confidence was absent, people didn't take him seriously. The second said the exact same thing — clearly, confidently, simply. People listened, believed, and called him a leader. Their ideas were the same. Their communication was different. <span class="hl">Communication separated their entire lives.</span></p>
+      <div class="brk">· · ·</div>
+      <p>Communication is the most underrated skill in the world. Everyone can speak. But not everyone can make others understand. And whoever can make others understand — can change the world. A job comes through an interview — communication. A relationship is built through words — communication. Business grows through trust — built through communication. <span class="hl">Whoever is good at it — is ahead everywhere.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>The first thing — Listening.</strong> Most people think communication means speaking well. But the greatest skill is genuinely listening. When someone speaks — most people are thinking "What will I say next?" They're not listening — they're waiting. And the other person feels that. When you genuinely listen — they feel understood, valued, trusted. <span class="hl">Just by listening — trust is built.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>The second thing — Clarity.</strong> What can be said directly — say directly. Many people say a lot but say nothing. Too many words, too little meaning. Good communicators give more meaning with fewer words. "I think maybe we should try to approach this somewhat differently" versus "We need to change this." The first confuses. The second clarifies. <span class="hl">Clarity is respect for the other person's time.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>The third thing — Empathy.</strong> Communication is connection. Connection happens when you stand in the other person's place. "What do they want to hear? What is their pain? What mood are they in?" When you understand this — your words reach their heart. And what reaches the heart — is remembered.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The fourth thing — Body Language.</strong> Research shows: only 7% of a message goes through words. 38% through tone of voice. 55% through body language. Slouched shoulders, downcast eyes, soft voice — all say "I don't trust myself." Stand straight. Make eye contact. Carry confidence in your voice. <span class="hl">Your words will automatically feel more powerful.</span></p>
+      <div class="brk">· · ·</div>
+      <p><strong>The fifth thing — Simplicity.</strong> The person who can speak simply is the smartest person. Einstein said: "If you can't explain something simply — you haven't understood it yourself." Whoever can explain it to a child — can explain it to anyone.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The sixth thing — Storytelling.</strong> Facts go to the mind. Stories go to the heart. Wrap your message in a real example, a character, a situation. People will remember. Stories are remembered. Data is forgotten.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The seventh thing — Asking Questions.</strong> Good communicators ask more questions and give fewer answers. Questions show curiosity and respect. Questions make the other person feel important. And whoever makes you feel important — people like, trust, and want to be with.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>The eighth thing — Silence.</strong> When someone speaks — pause before answering. That pause says "I listened. I'm taking this seriously. My answer is considered." A considered answer is always better than an instant one.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Practice makes the difference.</strong> Every day, one conscious conversation. "Am I speaking clearly? Am I genuinely listening? Is the other person comfortable?" This awareness turns every conversation into practice. Practice leads to mastery.</p>
+      <div class="brk">· · ·</div>
+      <p>Gandhi was a lawyer — but his communication freed a nation. Steve Jobs was an engineer — but his communication made people fall in love with products. Nelson Mandela was a prisoner — but his communication healed a nation. Communication turned their ideas into movements.</p>
+      <div class="brk">· · ·</div>
+      <p>A great idea that isn't communicated — dies. An ordinary idea powerfully communicated — changes the world.</p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">Inside you there is so much — ideas, feelings, dreams. They're locked inside. Communication is the key that brings them out. And what comes out — the world can see. The world can be changed.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
+  },
+  {
+    id: 16,
+    title: "Problem-Solving Is the Ultimate Skill",
+    category: "skills",
+    date: "Apr 17, 2026",
+    readTime: "10 min read",
+    likes: 0,
+    excerpt: "A ship's engine failed at sea. Engineers tried everything. Then an old man came, walked around, listened, tapped one spot with a hammer — and it started. His bill: 10,000 rupees. The tap: 1 rupee. Knowing where to tap: priceless.",
+    thumbnail: "",
+    content: `
+      <p>A ship in the middle of the ocean — engine stopped. The captain called all engineers. Everyone tried. No one could figure it out. Then an old engineer was called. He came, walked around, listened carefully, looked carefully. Then tapped one small spot with a small hammer. The engine started.</p>
+      <p>His bill: ten thousand rupees. The captain said — "You only struck one hammer blow — this much?" The engineer replied — "Striking the hammer — one rupee. <span class="hl">Knowing where to strike — nine thousand nine hundred and ninety-nine rupees."</span> That is problem-solving.</p>
+      <div class="brk">· · ·</div>
+      <p>There are two kinds of people in the world: those who see problems and those who solve them. The first kind — everywhere. The second kind — rare. And rare things are always valuable.</p>
+      <div class="brk">· · ·</div>
+      <p>Why is problem-solving the ultimate skill? Because life is an endless series of problems — health, relationships, money, career, business. Problems never end. Whoever can solve them — never has to stop. And problem-solving is not a talent. It is a skill. Skills can be learned.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>First step — Understand the problem correctly.</strong> Most people start looking for a solution before understanding the problem — like a doctor prescribing medicine without diagnosis. Einstein said: "If I had one hour to solve a problem — I'd spend 55 minutes understanding it and 5 minutes on the solution." <span class="hl">When the problem is clearly understood — half the solution is already found.</span></p>
+      <p>Method: ask "Why?" five times. Problem — "Sales are down." Why? — "Customers aren't coming." Why? — "No marketing." Why? — "I don't know how to do marketing." The real problem wasn't sales — it was a gap in knowledge. When the real problem is found — the right solution comes.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Second step — Challenge your Assumptions.</strong> "This is impossible." "It's never been done." These assumptions stop you from seeing new solutions. A problem-solver asks — "Is it really impossible?" When assumptions break — new possibilities appear.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Third step — Look from different angles.</strong> One problem — different perspectives. HR sees salary. Manager sees culture. Employee sees growth. All may be right. Until you look from different angles — you can't find the truth.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Fourth step — List multiple solutions.</strong> Don't stop at the first. It's the obvious one — and the obvious solution is often not the best. Think of five, ten, even crazy ones. When you open up options — an unexpected best solution often emerges.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Fifth step — Take Action.</strong> Many people keep analyzing but don't act. An imperfect action is better than a perfect plan. Action brings feedback. Feedback brings learning. Learning brings better solutions.</p>
+      <div class="brk">· · ·</div>
+      <p><strong>Sixth step — Treat Failure as Data.</strong> Every failure is information. "This path didn't work. Next time I'll do this differently." Edison said — "I didn't fail 10,000 times. I found 10,000 ways that didn't work." <span class="hl">Whoever treats failure as data — never truly loses. They just get closer.</span></p>
+      <div class="brk">· · ·</div>
+      <p>Three powerful tools: <strong>First Principles Thinking</strong> — break any problem to its most basic truth, then rebuild. Elon Musk used this to make rockets 10x cheaper. <strong>Inversion</strong> — instead of "How do I succeed?" ask "How do I avoid failing?" Remove the obstacles and success comes naturally. <strong>The Rubber Duck Method</strong> — explain your problem out loud. When you explain it — you organise your mind. Often the solution reveals itself while explaining.</p>
+      <div class="brk">· · ·</div>
+      <p>People who run from problems let them grow. One small problem ignored today becomes a big one tomorrow. People who face problems keep them small. And small problems are solved easily.</p>
+      <div class="brk">· · ·</div>
+      <p>Problems are signals of growth. When a new problem comes — it means you are at a new level. Every new level has new problems. Having problems means you are moving forward.</p>
+      <div class="brk">· · ·</div>
+      <p>The world pays those who solve problems. The bigger the problem — the bigger the pay. Every successful person is the solution to someone's problem. The bigger the problem you can solve — the greater your value. The greater your life.</p>
+      <div class="brk">· · ·</div>
+      <p><span class="hl">Problems are part of life. Don't run from them. Understand them. Face them. Solve them. Because every solved problem makes you a better person. And a better person lives a better life.</span></p>
+      <div class="sig">— DecodyLife</div>
+    `
   }
 ];
 
 // ══ STATE ══
 let curCat='all', curSort='latest', curPage=1, curArticle=null;
 const PER_PAGE=10;
-const likes={}, comments={};
+window._fbLiked = {};
 
 // ══ INTRO ANIMATION ══
 window.onload=function(){
@@ -1217,7 +2458,7 @@ window.onload=function(){
       document.getElementById('intro').style.display='none';
       document.getElementById('site').classList.add('show');
       renderFeed();
-      startCycling();
+      startCube();
     },900);
   },2400);
 };
@@ -1249,42 +2490,23 @@ function toggleTheme(){
   }
 }
 
-// ══ CYCLING TEXT ══
-const cycleWords=['Business','Psychology','Marketing','Skills','Productivity','Money','Finance','Life','Communication'];
-let cycleIdx=0;
-function startCycling(){
-  const el=document.getElementById('cycling-word');
-  const words=cycleWords;
-  let idx=0;
-
-  function typeWord(word){
-    el.textContent='';
-    el.style.borderRightColor='#000';
-    let i=0;
-    const typer=setInterval(()=>{
-      el.textContent+=word[i];
-      i++;
-      if(i>=word.length){
-        clearInterval(typer);
-        setTimeout(()=>eraseWord(),1400);
-      }
-    },60);
-  }
-
-  function eraseWord(){
-    let txt=el.textContent;
-    const eraser=setInterval(()=>{
-      txt=txt.slice(0,-1);
-      el.textContent=txt;
-      if(!txt.length){
-        clearInterval(eraser);
-        idx=(idx+1)%words.length;
-        setTimeout(()=>typeWord(words[idx]),250);
-      }
-    },40);
-  }
-
-  typeWord(words[idx]);
+// ══ 3D CUBE ROTATION ══
+function startCube(){
+  const cube=document.getElementById('rotatingCube');
+  if(!cube) return;
+  const rotations=[
+    'rotateY(0deg) translateY(-5px)',
+    'rotateY(-90deg) translateY(-5px)',
+    'rotateY(-180deg) translateY(-5px)',
+    'rotateY(-270deg) translateY(-5px)',
+    'rotateX(-90deg) translateY(-5px)',
+    'rotateX(90deg) translateY(-5px)'
+  ];
+  let i=0;
+  setInterval(()=>{
+    i=(i+1)%rotations.length;
+    cube.style.transform=rotations[i];
+  },2500);
 }
 
 // ══ SEARCH ══
@@ -1300,7 +2522,7 @@ function handleSearch(q){
     a.title.toLowerCase().includes(q.toLowerCase())||
     a.category.toLowerCase().includes(q.toLowerCase())
   );
-  if(!m.length){ drop.innerHTML='<div class="s-drop-item"><div class="sd-title" style="color:#333">🤔 &nbsp;Hmm, we haven\'t decoded this yet.</div></div>'; }
+  if(!m.length){ drop.innerHTML='<div class="s-drop-item"><div class="sd-title" style="color:#8daacf">🤔 &nbsp;Hmm, we haven\'t decoded this yet.</div></div>'; }
   else{
     drop.innerHTML=m.map(a=>`
       <div class="s-drop-item" onmousedown="openArticle(${a.id})">
@@ -1329,8 +2551,8 @@ function setSort(s,btn){
 function renderFeed(){
   let arts=[...ARTICLES];
   if(curCat!=='all') arts=arts.filter(a=>a.category===curCat);
-  if(curSort==='popular') arts.sort((a,b)=>(b.likes+(likes[b.id]||0))-(a.likes+(likes[a.id]||0)));
-  else if(curSort==='best') arts.sort((a,b)=>(b.likes+(likes[b.id]||0))-(a.likes+(likes[a.id]||0)));
+  if(curSort==='popular') arts.sort((a,b)=>b.likes-a.likes);
+  else if(curSort==='best') arts.sort((a,b)=>b.likes-a.likes);
   else arts.sort((a,b)=>b.id-a.id);
 
   const total=arts.length;
@@ -1397,12 +2619,16 @@ function openArticle(id){
     ? `<img src="${a.thumbnail}" alt="${a.title}"/>`
     : `<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="m3 16 5-5 4 4 3-3 6 6"/></svg>`;
   document.getElementById('a-content').innerHTML=a.content;
-  updateLikeBtn(!!likes[id], a.likes+(likes[id]?1:0));
-  renderComments(id);
+  document.getElementById('view-count').textContent='— views';
+  updateLikeBtn(false, 0);
   renderRelated(id);
   document.getElementById('home-page').style.display='none';
   document.getElementById('article-page').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
+  // Firebase: track view, listen likes, listen comments
+  if(window.fbTrackView) window.fbTrackView(id);
+  if(window.fbListenLikes) window.fbListenLikes(id);
+  if(window.fbListenComments) window.fbListenComments(id);
 }
 
 function showHome(){
@@ -1414,44 +2640,31 @@ function showHome(){
 }
 
 // ══ LIKES ══
-function updateLikeBtn(isLiked,count){
+window.updateLikeBtn = function(isLiked,count){
   const btn=document.getElementById('like-btn');
+  if(!btn) return;
   btn.className='like-btn'+(isLiked?' liked':'');
   btn.innerHTML=isLiked
     ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Liked`
     : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Like`;
   document.getElementById('like-count').textContent=`${count} likes`;
 }
+function updateLikeBtn(isLiked,count){ window.updateLikeBtn(isLiked,count); }
+
 function toggleLike(){
   if(!curArticle) return;
-  const id=curArticle.id;
-  likes[id]=likes[id]?0:1;
-  updateLikeBtn(!!likes[id], curArticle.likes+(likes[id]?1:0));
+  if(window.fbToggleLike) window.fbToggleLike(curArticle.id);
 }
 
 // ══ COMMENTS ══
-function renderComments(id){
-  const list=document.getElementById('c-list');
-  const cs=comments[id]||[];
-  list.innerHTML=!cs.length
-    ? '<div class="c-empty">No comments yet. Be the first.</div>'
-    : cs.map(c=>`
-        <div class="c-item">
-          <div class="c-author">${c.name}<span class="c-date">${c.date}</span></div>
-          <div class="c-text">${c.text}</div>
-        </div>`).join('');
-}
 function postComment(){
   if(!curArticle) return;
   const name=document.getElementById('c-name').value.trim();
   const text=document.getElementById('c-text').value.trim();
   if(!name||!text) return;
-  const id=curArticle.id;
-  if(!comments[id]) comments[id]=[];
-  comments[id].unshift({name,text,date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})});
+  if(window.fbPostComment) window.fbPostComment(curArticle.id, name, text);
   document.getElementById('c-name').value='';
   document.getElementById('c-text').value='';
-  renderComments(id);
 }
 
 // ══ RELATED ══
@@ -1572,12 +2785,13 @@ function renderRelated(id){
   font-family:'IBM Plex Mono',monospace;
   font-size:9px;letter-spacing:0.18em;
   text-transform:uppercase;
-  color:#fff;
-  background:rgba(101,72,48,0.45);
+  color:#93c5fd;
+  background:rgba(29,78,216,0.18);
   display:inline-block;
   padding:3px 10px;
   border-radius:2px;
   margin-bottom:8px;
+  border:1px solid rgba(59,130,246,0.20);
 }
 .fc-link{
   font-family:'Source Serif 4',serif;
@@ -1590,14 +2804,15 @@ function renderRelated(id){
 
 /* COPYRIGHT BAR */
 .footer-copy-bar{
-  border-top:1px solid #1a1a1a;
+  border-top:1px solid rgba(59,130,246,0.10);
   padding:14px 20px;
   text-align:center;
   font-family:'IBM Plex Mono',monospace;
   font-size:10px;
   letter-spacing:0.1em;
-  color:#fff;
-  background:rgba(101,72,48,0.45);
+  color:#3b82f6;
+  opacity:0.6;
+  background:rgba(29,78,216,0.08);
 }
 
 @media(max-width:640px){
